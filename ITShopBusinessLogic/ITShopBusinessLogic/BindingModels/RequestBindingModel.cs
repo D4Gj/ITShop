@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ITShopBusinessLogic.BindingModels
 {
-    public class OrderBindingModel
+    public class RequestBindingModel
     {
         public int? Id { get; set; }
-        public int? ClientId { get; set; }
-        public decimal Sum { get; set; }
+        public DateTime Date { get; set; }
+        public string Name { get; set; }
     }
 }
