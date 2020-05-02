@@ -11,6 +11,7 @@ namespace ITShopBusinessLogic.BindingModels
         public string Name { get; set; }
         public DateTime ReleaseYear { get; set; }
         public DateTime WarrantyEnd { get; set; }
-        public double ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
+        public Dictionary<int, (string, int)> ProductComponents { get; set; }
     }
 }
