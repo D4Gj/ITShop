@@ -10,5 +10,6 @@ namespace ITShopDatabaseImplement.Models
         public string ComponentName { get; set; }
         public decimal ComponentPrice { get; set; }
         public virtual List<Request> Requests { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }
