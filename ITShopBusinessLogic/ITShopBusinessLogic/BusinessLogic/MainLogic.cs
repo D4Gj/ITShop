@@ -28,15 +28,49 @@ namespace ITShopBusinessLogic.BusinessLogic
 
         public void TakeOrderInReserve(DateRecordingInOrderBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId });
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
             }
-            if (order.DateOrder == null)
+            if (order.OrderDate == null)
             {
-
+                throw new Exception("Заказ создан не коректно нет даты создания заказа");
             }
+            orderLogic.CreateOrUpdate(new OrderBindingModel
+            {
+                Id = order.Id,
+                ClientId = order.ClietnId,
+                ProductID = order.ProductId,
+                Count = order.Count,
+                Sum = order.Sum,
+                OrderDate = order.OrderDate,
+                ReserveDate = model.Date,
+            }) ;
+        }
+
+        public void TookOrder(DateRecordingInOrderBindingModel model)
+        {
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+            if (order == null)
+            {
+                throw new Exception("Не найден заказ");
+            }
+            if (order.OrderDate == null)
+            {
+                throw new Exception("Заказ создан не коректно нет даты создания заказа");
+            }
+            orderLogic.CreateOrUpdate(new OrderBindingModel
+            {
+                Id = order.Id,
+                ClientId = order.ClietnId,
+                ProductID = order.ProductId,
+                Count = order.Count,
+                Sum = order.Sum,
+                OrderDate = order.OrderDate,
+                ReserveDate = order.ReserveDate,
+                TookDate = DateTime.Now
+            });
         }
     }
 }
