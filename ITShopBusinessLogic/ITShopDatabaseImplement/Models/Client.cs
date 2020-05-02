@@ -12,5 +12,6 @@ namespace ITShopDatabaseImplement.Models
         public string Phone { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public virtual List<Order> Orders { get; set; }
     }
 }
