@@ -20,7 +20,7 @@ namespace ITShopBusinessLogic.BusinessLogic
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 ClientId = model.ClientId,
-                ProductID = model.ProductID,
+                ProductId = model.ProductID,
                 Count = model.Count,
                 OrderDate = DateTime.Now
             });
@@ -41,7 +41,7 @@ namespace ITShopBusinessLogic.BusinessLogic
             {
                 Id = order.Id,
                 ClientId = order.ClietnId,
-                ProductID = order.ProductId,
+                ProductId = order.ProductId,
                 Count = order.Count,
                 Sum = order.Sum,
                 OrderDate = order.OrderDate,
@@ -64,7 +64,7 @@ namespace ITShopBusinessLogic.BusinessLogic
             {
                 Id = order.Id,
                 ClientId = order.ClietnId,
-                ProductID = order.ProductId,
+                ProductId = order.ProductId,
                 Count = order.Count,
                 Sum = order.Sum,
                 OrderDate = order.OrderDate,
