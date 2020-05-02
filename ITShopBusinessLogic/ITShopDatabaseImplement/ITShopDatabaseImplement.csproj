@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <Folder Include="Implements\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ITShopBusinessLogic\ITShopBusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>
