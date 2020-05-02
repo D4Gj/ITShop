@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ITShopDatabaseImplement
 {
-    public class PizzaShopDatabase:DbContext
+    public class ITShopDatabase:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
