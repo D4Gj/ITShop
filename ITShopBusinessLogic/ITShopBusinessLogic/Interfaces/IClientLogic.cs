@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ITShopBusinessLogic.Interfaces
 {
-    public interface IClientOrder
+    public interface IClientLogic
     {
         List<ClientViewModel> Read(ClientBindingModel model);
         void CreateOrUpdate(ClientBindingModel model);
