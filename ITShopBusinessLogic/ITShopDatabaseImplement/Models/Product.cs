@@ -11,7 +11,7 @@ namespace ITShopDatabaseImplement.Models
         public DateTime ReleaseYear { get; set; }
         public DateTime WarrantyEnd { get; set; }
         public double ProductPrice { get; set; }
-        public virtual List<ProductComponent> ProductComponents { get; set; }
+        public virtual List<Component> ProductComponents { get; set; }
         public virtual List<Order> Orders { get; set; }
     }
 }
