@@ -8,11 +8,11 @@ namespace ITShopBusinessLogic.ViewModels
     public class OrderViewModel
     {
         [DisplayName("Идентификатор заказа")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [DisplayName("Идентификатор продукта")]
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
         [DisplayName("Идентификатор клиента")]
-        public int ClietnId { get; set; }
+        public int? ClietnId { get; set; }
         [DisplayName("Название продукта")]
         public string ProductName { get; set; }
         [DisplayName("Имя")]
@@ -26,8 +26,8 @@ namespace ITShopBusinessLogic.ViewModels
         [DisplayName("Дата создания заказа")]
         public DateTime OrderDate { get; set; }
         [DisplayName("Дата резервирования заказа")]
-        public DateTime ReserveDate { get; set; }
+        public DateTime? ReserveDate { get; set; }
         [DisplayName("Дата оплаты и получения клиентом ")]
-        public DateTime TookDate { get; set; }
+        public DateTime? TookDate { get; set; }
     }
 }

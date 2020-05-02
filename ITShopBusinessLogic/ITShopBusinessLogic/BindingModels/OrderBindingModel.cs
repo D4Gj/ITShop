@@ -8,12 +8,14 @@ namespace ITShopBusinessLogic.BindingModels
     {
         public int? Id { get; set; }
         public int? ClientId { get; set; }
-        public int? ProductID { get; set; }
+        public int? ProductId { get; set; }
         public int Count { get; set; }
         //Суммы заказа у нас нет в диограмме базы данных потом надо поговорить по этому поводу.
         public decimal Sum { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime ReserveDate { get; set; }
-        public DateTime TookDate { get; set; }
+        public DateTime? ReserveDate { get; set; }
+        public DateTime? TookDate { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }
