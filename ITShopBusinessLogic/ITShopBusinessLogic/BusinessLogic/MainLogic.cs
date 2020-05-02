@@ -4,6 +4,7 @@ using System.Text;
 using ITShopBusinessLogic.BindingModels;
 using ITShopBusinessLogic.Enums;
 using ITShopBusinessLogic.Interfaces;
+using ITShopBusinessLogic.ViewModels;
 
 namespace ITShopBusinessLogic.BusinessLogic
 {
@@ -18,8 +19,24 @@ namespace ITShopBusinessLogic.BusinessLogic
         {
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
-                
+                ClientId = model.ClientId,
+                ProductID = model.ProductID,
+                Count = model.Count,
+                OrderDate = DateTime.Now
             });
+        }
+
+        public void TakeOrderInReserve(DateRecordingInOrderBindingModel model)
+        {
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId });
+            if (order == null)
+            {
+                throw new Exception("Не найден заказ");
+            }
+            if (order.DateOrder == null)
+            {
+
+            }
         }
     }
 }
