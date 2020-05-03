@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ITShopDatabaseImplement.Implements
 {
-    class OrderLogic : IOrderLogic
+    public class OrderLogic : IOrderLogic
     {
         public void CreateOrUpdate(OrderBindingModel model)
         {
