@@ -7,7 +7,7 @@ namespace ITShopBusinessLogic.BindingModels
     public class RequestBindingModel
     {
         public int? Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Name { get; set; }
+        public DateTime RequestDate { get; set; }
+        public string RequestName { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace ITShopBusinessLogic.BindingModels
         public int? Id { get; set; }
         // перенести в енам
         //public string Type { get; set; }
-        public string Name { get; set; }
+        public string ComponentName { get; set; }
         public decimal ComponentPrice { get; set; }
     }
 }
