@@ -41,18 +41,19 @@ namespace ITShopDatabaseImplement.Implements
             {
                 return context.Requests
                 .Where(rec => model == null || rec.Id == model.Id)
+                .ToList()
                 .Select(rec => new RequestViewModel
                 {
                     Id = rec.Id,
                     RequestName = rec.RequestName,
                     RequestDate = rec.RequestDate,
-                    RequestComponents = context.RequestComponent
+                    RequestComponents = context.RequestComponents
                 .Include(recPC => recPC.Component)
                 .Where(recPC => recPC.RequestId == rec.Id)
                 .ToDictionary(recPC => recPC.ComponentId, recPC =>
                 (recPC.Component?.ComponentName, recPC.Count))
                 })
-                .ToList(); //Не пойму что не так
+                .ToList(); 
             }
         }
     }
