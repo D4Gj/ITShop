@@ -7,7 +7,9 @@ namespace ITShopDatabaseImplement.Models
     public class Order
     {
         public int? Id { get; set; }
-        public int? ProductId { get; set; }      
+        [Required]
+        public int? ProductId { get; set; }
+        [Required]
         public int? ClientId { get; set; }
         [Required]
         public int Count { get; set; }
@@ -15,7 +17,6 @@ namespace ITShopDatabaseImplement.Models
         public decimal Sum { get; set; }
         [Required]
         public DateTime OrderDate { get; set; }
-        [Required]
         public DateTime? ReserveDate { get; set; }
         public DateTime? TookDate { get; set; }
         public virtual Client Client { get; set; }
