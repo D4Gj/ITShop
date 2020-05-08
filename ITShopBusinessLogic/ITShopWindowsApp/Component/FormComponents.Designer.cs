@@ -1,4 +1,4 @@
-﻿namespace ITShopWindowsApp.Client
+﻿namespace ITShopWindowsApp.Component
 {
     partial class FormComponents
     {

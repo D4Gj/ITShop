@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ITShopWindowsApp.Client
+namespace ITShopWindowsApp.Component
 {
     public partial class FormComponents : Form
     {
