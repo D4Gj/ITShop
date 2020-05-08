@@ -44,6 +44,7 @@
             this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
@@ -99,6 +100,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormComponent";
             this.Text = "FormComponent";
+            this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
