@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ITShopWindowsApp.Product
 {
-    public partial class FormProductBillet : Form
+    public partial class FormProductComponents : Form
     {
-        public FormProductBillet()
+        public FormProductComponents()
         {
             InitializeComponent();
         }

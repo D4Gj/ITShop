@@ -1,6 +1,6 @@
 ﻿namespace ITShopWindowsApp.Product
 {
-    partial class FormProductBillet
+    partial class FormProductComponents
     {
         /// <summary>
         /// Required designer variable.
