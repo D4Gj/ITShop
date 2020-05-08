@@ -11,5 +11,7 @@ namespace ITShopBusinessLogic.ViewModels
         public int Id { get; set; }
         [DisplayName("Название Компонента")]
         public string ComponentName { get; set; }
+        [DisplayName("Стоимость Компонента")]
+        public decimal CoponentPrice { get; set; }
     }
 }
