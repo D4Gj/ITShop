@@ -1,6 +1,6 @@
 ﻿namespace ITShopWindowsApp.Product
 {
-    partial class FormProductComponents
+    partial class FormProductComponent
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,7 @@
             this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonSave
             // 
@@ -53,6 +54,7 @@
             this.buttonSave.TabIndex = 10;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // textBoxCount
             // 
@@ -87,7 +89,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Заготовка";
             // 
-            // FormProductBillet
+            // FormProductComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +100,7 @@
             this.Controls.Add(this.comboBoxBillet);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormProductBillet";
+            this.Name = "FormProductComponent";
             this.Text = "FormProductBillet";
             this.ResumeLayout(false);
             this.PerformLayout();
