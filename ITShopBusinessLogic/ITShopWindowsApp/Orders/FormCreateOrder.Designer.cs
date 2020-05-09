@@ -55,6 +55,7 @@
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(101, 21);
             this.comboBoxProduct.TabIndex = 1;
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -96,6 +97,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(73, 20);
             this.textBoxCount.TabIndex = 6;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // label4
             // 
@@ -114,6 +116,7 @@
             this.buttonCreateOrder.TabIndex = 8;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
+            this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
             // 
             // buttonCancel
             // 
@@ -123,6 +126,7 @@
             this.buttonCancel.TabIndex = 9;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // FormCreateOrder
             // 
@@ -141,6 +145,7 @@
             this.Controls.Add(this.comboBoxClient);
             this.Name = "FormCreateOrder";
             this.Text = "FormCreateOrder";
+            this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
