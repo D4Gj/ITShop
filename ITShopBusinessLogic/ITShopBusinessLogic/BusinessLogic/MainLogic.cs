@@ -20,7 +20,7 @@ namespace ITShopBusinessLogic.BusinessLogic
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 ClientId = model.ClientId,
-                ProductId = model.ProductID,
+                ProductId = model.ProductId,
                 Count = model.Count,
                 OrderDate = DateTime.Now
             });
