@@ -10,6 +10,6 @@ namespace ITShopDatabaseImplement.Models
         [Required]
         public DateTime RequestDate { get; set; }
         public string RequestName { get; set; }
-        public virtual List<Component> RequestComponents { get; set; }
+        public virtual List<RequestComponent> RequestComponents { get; set; }
     }
 }

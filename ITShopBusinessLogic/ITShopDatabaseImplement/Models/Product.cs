@@ -15,7 +15,7 @@ namespace ITShopDatabaseImplement.Models
         public DateTime WarrantyEnd { get; set; }
         [Required]
         public decimal ProductPrice { get; set; }
-        public virtual List<Component> ProductComponents { get; set; }
+        public virtual List<ProductComponent> ProductComponents { get; set; }
         public virtual List<Order> Orders { get; set; }
     }
 }
