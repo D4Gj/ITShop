@@ -17,14 +17,17 @@ namespace ITShopClientView
         }
         private void ButtonRegister_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxLogin.Text) && !string.IsNullOrEmpty(textBoxPassword.Text) && !string.IsNullOrEmpty(textBoxClientFIO.Text))
+            if (!string.IsNullOrEmpty(textBoxEmail.Text) && !string.IsNullOrEmpty(textBoxPassword.Text) 
+                && !string.IsNullOrEmpty(textBoxFirstName.Text) && !string.IsNullOrEmpty(textBoxLastName.Text))
             {
                 try
                 {
                     APIClient.PostRequest("api/client/register", new ClientBindingModel
                     {
-                        FirstName = textBoxClientFIO.Text,
-                        Login = textBoxLogin.Text,
+                        FirstName = textBoxFirstName.Text,
+                        LastName = textBoxLastName.Text,
+                        Phone = textBoxPhone.Text,
+                        Login = textBoxEmail.Text,
                         Password = textBoxPassword.Text
                     });
 

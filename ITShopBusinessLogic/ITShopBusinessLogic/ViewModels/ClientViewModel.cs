@@ -17,5 +17,7 @@ namespace ITShopBusinessLogic.ViewModels
         public string Login { get; set; }
         [DisplayName("Пароль")]
         public string Password { get; set; }
+        [DisplayName("Телефон")]
+        public string Phone { get; set; }
     }
 }
