@@ -26,22 +26,15 @@ namespace ITShopRestApi.Controllers
             _main = main;
         }
         [HttpGet]
-        public List<ProductModel> GetProductList() => _product.Read(null)?.Select(rec => Convert(rec)).ToList();
+        public List<ProductViewModel> GetProductList() => _product.Read(null);
         [HttpGet]
-        public ProductModel GetProduct(int productId) => Convert(_product.Read(new ProductBindingModel { Id = productId })?[0]);
+        public ProductViewModel GetProduct(int productId) => _product.Read(new ProductBindingModel
+        {
+            Id = productId
+        })?.FirstOrDefault();
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) => _main.CreateOrder(model);
-        private ProductModel Convert(ProductViewModel model)
-        {
-            if (model == null) return null;
-            return new ProductModel
-            {
-                Id = model.Id,
-                ProductName = model.ProductName,
-                Price = model.Price
-            };
-        }
     }
 }
