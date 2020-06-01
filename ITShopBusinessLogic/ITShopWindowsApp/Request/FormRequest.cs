@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
-namespace ITShopWindowsApp.Product
+namespace ITShopWindowsApp.Request
 {
-    public partial class FormProduct : Form
+    public partial class FormRequest : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IProductLogic logic;
+        private readonly IRequestLogic logic;
         private int? id;
-        private Dictionary<int, (string, int)> productComponents;
-        public FormProduct(IProductLogic logic)
+        private Dictionary<int, (string, int)> requestComponents;
+        public FormRequest(IRequestLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -32,22 +32,20 @@ namespace ITShopWindowsApp.Product
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
         private void FormProduct_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    ProductViewModel view = logic.Read(new ProductBindingModel
+                    RequestViewModel view = logic.Read(new RequestBindingModel
                     {
                         Id = id.Value
                     })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ProductName;
-                        textBoxPrice.Text = view.Price.ToString();
-                        productComponents = view.ProductCompunents;
+                        textBoxName.Text = view.RequestName;
+                        requestComponents = view.RequestComponents;
                         LoadData();
                     }
                 }
@@ -59,17 +57,17 @@ namespace ITShopWindowsApp.Product
             }
             else
             {
-                productComponents = new Dictionary<int, (string, int)>();
+                requestComponents = new Dictionary<int, (string, int)>();
             }
         }
         private void LoadData()
         {
             try
             {
-                if (productComponents != null)
+                if (requestComponents != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var pc in productComponents)
+                    foreach (var pc in requestComponents)
                     {
                         dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
                     }
@@ -84,16 +82,16 @@ namespace ITShopWindowsApp.Product
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProductComponent>();
+            var form = Container.Resolve<FormRequestComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (productComponents.ContainsKey(form.Id))
+                if (requestComponents.ContainsKey(form.Id))
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    requestComponents[form.Id] = (form.ComponentName, form.Count);
                 }
                 else
                 {
-                    productComponents.Add(form.Id, (form.ComponentName, form.Count));
+                    requestComponents.Add(form.Id, (form.ComponentName, form.Count));
                 }
                 LoadData();
             }
@@ -103,13 +101,13 @@ namespace ITShopWindowsApp.Product
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormProductComponent>();
+                var form = Container.Resolve<FormRequestComponent>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                form.Count = productComponents[id].Item2;
+                form.Count = requestComponents[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    requestComponents[form.Id] = (form.ComponentName, form.Count);
                     LoadData();
                 }
             }
@@ -124,7 +122,7 @@ namespace ITShopWindowsApp.Product
                 {
                     try
                     {
-                        productComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        requestComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -149,13 +147,7 @@ namespace ITShopWindowsApp.Product
                MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(textBoxPrice.Text))
-            {
-                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-                return;
-            }
-            if (productComponents == null || productComponents.Count == 0)
+            if (requestComponents == null || requestComponents.Count == 0)
             {
                 MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -163,12 +155,12 @@ namespace ITShopWindowsApp.Product
             }
             try
             {
-                logic.CreateOrUpdate(new ProductBindingModel
+                logic.CreateOrUpdate(new RequestBindingModel
                 {
                     Id = id,
-                    Name = textBoxName.Text,
-                    ProductPrice = Convert.ToDecimal(textBoxPrice.Text),
-                    ProductComponents = productComponents
+                    RequestName = textBoxName.Text,
+                    RequestComponents = requestComponents,
+                    RequestDate = DateTime.Now
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);

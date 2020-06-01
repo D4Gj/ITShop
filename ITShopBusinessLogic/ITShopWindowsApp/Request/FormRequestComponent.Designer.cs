@@ -1,6 +1,6 @@
-﻿namespace ITShopWindowsApp.Product
+﻿namespace ITShopWindowsApp.Request
 {
-    partial class FormProductComponent
+    partial class FormRequestComponent
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxCount = new System.Windows.Forms.TextBox();
-            this.comboBoxBillet = new System.Windows.Forms.ComboBox();
+            this.comboBoxComponent = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(133, 69);
+            this.buttonCancel.Location = new System.Drawing.Point(142, 66);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 17;
@@ -48,7 +48,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(52, 69);
+            this.buttonSave.Location = new System.Drawing.Point(61, 66);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 16;
@@ -58,23 +58,23 @@
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(87, 38);
+            this.textBoxCount.Location = new System.Drawing.Point(96, 35);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(121, 20);
             this.textBoxCount.TabIndex = 15;
             // 
-            // comboBoxBillet
+            // comboBoxComponent
             // 
-            this.comboBoxBillet.FormattingEnabled = true;
-            this.comboBoxBillet.Location = new System.Drawing.Point(87, 12);
-            this.comboBoxBillet.Name = "comboBoxBillet";
-            this.comboBoxBillet.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxBillet.TabIndex = 14;
+            this.comboBoxComponent.FormattingEnabled = true;
+            this.comboBoxComponent.Location = new System.Drawing.Point(96, 9);
+            this.comboBoxComponent.Name = "comboBoxComponent";
+            this.comboBoxComponent.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxComponent.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 38);
+            this.label2.Location = new System.Drawing.Point(12, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 13;
@@ -83,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 12);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 12;
@@ -93,11 +93,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(236, 108);
+            this.ClientSize = new System.Drawing.Size(224, 96);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxBillet);
+            this.Controls.Add(this.comboBoxComponent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormProductComponent";
@@ -112,7 +112,7 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxCount;
-        private System.Windows.Forms.ComboBox comboBoxBillet;
+        private System.Windows.Forms.ComboBox comboBoxComponent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }

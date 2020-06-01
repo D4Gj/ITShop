@@ -20,7 +20,6 @@ namespace ITShopClientView
         {
             FormRegister form = new FormRegister();
             form.ShowDialog();
-
         }
 
         private void ButtonLogin_Click(object sender, EventArgs e)

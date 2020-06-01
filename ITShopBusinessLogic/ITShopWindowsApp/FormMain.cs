@@ -7,6 +7,7 @@ using ITShopWindowsApp.Component;
 using System;
 using System.Windows.Forms;
 using Unity;
+using ITShopWindowsApp.Request;
 
 namespace ITShopWindowsApp
 {
@@ -63,7 +64,7 @@ namespace ITShopWindowsApp
 
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProduct>();
+            var form = Container.Resolve<FormProducts>();
             form.ShowDialog();
         }
 
@@ -76,6 +77,12 @@ namespace ITShopWindowsApp
         private void buttonUpd_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void запросыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormRequests>();
+            form.ShowDialog();
         }
     }
 }

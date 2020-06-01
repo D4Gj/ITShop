@@ -36,7 +36,7 @@ namespace ITShopWindowsApp.Component
                     if (view != null)
                     {
                         textBoxName.Text = view.ComponentName;
-                        textBoxPrice.Text = view.CoponentPrice.ToString();
+                        textBoxPrice.Text = view.ComponentPrice.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -73,6 +73,12 @@ namespace ITShopWindowsApp.Component
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
             }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

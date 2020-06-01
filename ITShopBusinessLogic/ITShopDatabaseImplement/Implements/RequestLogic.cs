@@ -13,8 +13,69 @@ namespace ITShopDatabaseImplement.Implements
     public class RequestLogic : IRequestLogic
     {
         public void CreateOrUpdate(RequestBindingModel model)
-        {
-            throw new NotImplementedException();
+        {        
+                using (var context = new ITShopDatabase())
+                {
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            Request element = context.Requests.FirstOrDefault(rec => rec.RequestName == model.RequestName && rec.Id != model.Id);
+                            if (element != null)
+                            {
+                                throw new Exception("Уже есть изделие с таким названием");
+                            }
+                            if (model.Id.HasValue)
+                            {
+                                element = context.Requests.FirstOrDefault(rec => rec.Id == model.Id);
+                                if (element == null)
+                                {
+                                    throw new Exception("Элемент не найден");
+                                }
+                            }
+                            else
+                            {
+                                element = new Request();
+                                context.Requests.Add(element);
+                            }
+                            element.RequestName = model.RequestName;
+                            element.RequestDate = model.RequestDate;
+                            context.SaveChanges();
+                            if (model.Id.HasValue)
+                            {
+                                var productComponents = context.ProductComponents.Where(rec => rec.ProductId == model.Id.Value).ToList();
+                                // удалили те, которых нет в модели
+                                context.ProductComponents.RemoveRange(productComponents.Where(rec => !model.RequestComponents.ContainsKey(rec.ComponentId)).ToList());
+                                context.SaveChanges();
+                                // обновили количество у существующих записей
+                                foreach (var updateComponent in productComponents)
+                                {
+                                    updateComponent.Count = model.RequestComponents[updateComponent.ComponentId].Item2;
+                                    model.RequestComponents.Remove(updateComponent.ComponentId);
+                                }
+                                context.SaveChanges();
+                            }
+                            // добавили новые
+                            foreach (var pc in model.RequestComponents)
+                            {
+                                context.RequestComponents.Add(new RequestComponent
+                                {
+                                    RequestId = element.Id,
+                                    ComponentId = pc.Key,
+                                    Count = pc.Value.Item2
+                                });
+                                context.SaveChanges();
+                            }
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            
         }
 
         public void Delete(RequestBindingModel model)

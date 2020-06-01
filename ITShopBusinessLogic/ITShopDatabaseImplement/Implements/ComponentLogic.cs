@@ -35,6 +35,7 @@ namespace ITShopDatabaseImplement.Implements
                     context.Components.Add(element);    
                 }
                 element.ComponentName = model.ComponentName;
+                element.ComponentPrice = model.ComponentPrice;
                 context.SaveChanges();
             }
         }
@@ -66,7 +67,8 @@ namespace ITShopDatabaseImplement.Implements
                 .Select(rec => new ComponentViewModel
                 {
                     Id = rec.Id,
-                    ComponentName = rec.ComponentName
+                    ComponentName = rec.ComponentName,
+                    ComponentPrice = rec.ComponentPrice
                 })
                 .ToList();
             }

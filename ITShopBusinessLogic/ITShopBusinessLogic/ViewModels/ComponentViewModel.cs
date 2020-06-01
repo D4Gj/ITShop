@@ -12,6 +12,6 @@ namespace ITShopBusinessLogic.ViewModels
         [DisplayName("Название Компонента")]
         public string ComponentName { get; set; }
         [DisplayName("Стоимость Компонента")]
-        public decimal CoponentPrice { get; set; }
+        public decimal ComponentPrice { get; set; }
     }
 }

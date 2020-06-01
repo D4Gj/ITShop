@@ -1,6 +1,6 @@
-﻿namespace ITShopWindowsApp.Product
+﻿namespace ITShopWindowsApp.Request
 {
-    partial class FormProduct
+    partial class FormRequest
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,7 @@
         {
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.buttonRef = new System.Windows.Forms.Button();
@@ -46,54 +44,38 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(401, 342);
+            this.buttonCancel.Location = new System.Drawing.Point(411, 318);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 13;
+            this.buttonCancel.Size = new System.Drawing.Size(68, 23);
+            this.buttonCancel.TabIndex = 20;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(320, 342);
+            this.buttonSave.Location = new System.Drawing.Point(330, 318);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 12;
+            this.buttonSave.Size = new System.Drawing.Size(68, 23);
+            this.buttonSave.TabIndex = 19;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // textBoxPrice
-            // 
-            this.textBoxPrice.Location = new System.Drawing.Point(63, 28);
-            this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(280, 20);
-            this.textBoxPrice.TabIndex = 11;
-            // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(63, 1);
+            this.textBoxName.Location = new System.Drawing.Point(75, 6);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(280, 20);
-            this.textBoxName.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Цена";
+            this.textBoxName.Size = new System.Drawing.Size(273, 20);
+            this.textBoxName.TabIndex = 17;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 4);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 8;
+            this.label1.TabIndex = 15;
             this.label1.Text = "Название";
             // 
             // groupBox
@@ -103,10 +85,10 @@
             this.groupBox.Controls.Add(this.buttonUpd);
             this.groupBox.Controls.Add(this.buttonAdd);
             this.groupBox.Controls.Add(this.dataGridView);
-            this.groupBox.Location = new System.Drawing.Point(3, 54);
+            this.groupBox.Location = new System.Drawing.Point(13, 30);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(477, 282);
-            this.groupBox.TabIndex = 7;
+            this.groupBox.Size = new System.Drawing.Size(470, 282);
+            this.groupBox.TabIndex = 14;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Компоненты";
             // 
@@ -158,20 +140,18 @@
             this.dataGridView.Size = new System.Drawing.Size(373, 257);
             this.dataGridView.TabIndex = 0;
             // 
-            // FormProduct
+            // FormRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 367);
+            this.ClientSize = new System.Drawing.Size(490, 348);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox);
-            this.Name = "FormProduct";
-            this.Text = "Сборка";
+            this.Name = "FormRequest";
+            this.Text = "Запрос";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -184,9 +164,7 @@
 
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Button buttonRef;

@@ -9,17 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
-namespace ITShopWindowsApp.Product
+namespace ITShopWindowsApp.Request
 {
-    public partial class FormProductComponent : Form
+    public partial class FormRequestComponent : Form
     {
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
         public int Id
         {
-            get { return Convert.ToInt32(comboBoxBillet.SelectedValue); }
-            set { comboBoxBillet.SelectedValue = value; }
+            get { return Convert.ToInt32(comboBoxComponent.SelectedValue); }
+            set { comboBoxComponent.SelectedValue = value; }
         }
-        public string ComponentName { get { return comboBoxBillet.Text; } }
+        public string ComponentName { get { return comboBoxComponent.Text; } }
         public int Count
         {
             get { return Convert.ToInt32(textBoxCount.Text); }
@@ -28,16 +31,16 @@ namespace ITShopWindowsApp.Product
                 textBoxCount.Text = value.ToString();
             }
         }
-        public FormProductComponent(IComponentLogic logic)
+        public FormRequestComponent(IComponentLogic logic)
         {
             InitializeComponent();
             List<ComponentViewModel> list = logic.Read(null);
             if (list != null)
             {
-                comboBoxBillet.DisplayMember = "ComponentName";
-                comboBoxBillet.ValueMember = "Id";
-                comboBoxBillet.DataSource = list;
-                comboBoxBillet.SelectedItem = null;
+                comboBoxComponent.DisplayMember = "ComponentName";
+                comboBoxComponent.ValueMember = "Id";
+                comboBoxComponent.DataSource = list;
+                comboBoxComponent.SelectedItem = null;
             }
         }
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -48,7 +51,7 @@ namespace ITShopWindowsApp.Product
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxBillet.SelectedValue == null)
+            if (comboBoxComponent.SelectedValue == null)
             {
                 MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
