@@ -4,14 +4,16 @@ using ITShopDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(ITShopDatabase))]
-    partial class ITShopDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20200602151729_migrationMail")]
+    partial class migrationMail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

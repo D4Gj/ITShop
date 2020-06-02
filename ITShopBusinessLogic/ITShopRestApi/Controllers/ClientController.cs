@@ -32,8 +32,8 @@ namespace ITShopRestApi.Controllers
             Login = login,
             Password = password
         })?.FirstOrDefault();
-        //[HttpGet]
-       // public List<MessageInfoViewModel> GetMessages(int clientId) => _messageInfoLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessages(int clientId) => _messageInfoLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
 
         [HttpPost]
         public void Register(ClientBindingModel model)
