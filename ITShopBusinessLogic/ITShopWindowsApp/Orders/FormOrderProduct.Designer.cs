@@ -34,11 +34,13 @@
             this.comboBoxProduct = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxSum = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(142, 66);
+            this.buttonCancel.Location = new System.Drawing.Point(142, 93);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 23;
@@ -47,7 +49,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(61, 66);
+            this.buttonSave.Location = new System.Drawing.Point(61, 93);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 22;
@@ -87,11 +89,30 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Продукт";
             // 
+            // textBoxSum
+            // 
+            this.textBoxSum.Enabled = false;
+            this.textBoxSum.Location = new System.Drawing.Point(96, 61);
+            this.textBoxSum.Name = "textBoxSum";
+            this.textBoxSum.Size = new System.Drawing.Size(121, 20);
+            this.textBoxSum.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 64);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Цена";
+            // 
             // FormOrderProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 91);
+            this.ClientSize = new System.Drawing.Size(225, 128);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
@@ -113,5 +134,7 @@
         private System.Windows.Forms.ComboBox comboBoxProduct;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxSum;
+        private System.Windows.Forms.Label label3;
     }
 }

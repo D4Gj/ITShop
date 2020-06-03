@@ -20,35 +20,12 @@ namespace ITShopBusinessLogic.BusinessLogic
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 ClientId = model.ClientId,
-                ProductId = model.ProductId,
-                Count = model.Count,
-                OrderDate = DateTime.Now
-            });
-        }
-
-        public void TakeOrderInReserve(DateRecordingInOrderBindingModel model)
-        {
-            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
-            if (order == null)
-            {
-                throw new Exception("Не найден заказ");
-            }
-            if (order.OrderDate == null)
-            {
-                throw new Exception("Заказ создан не коректно нет даты создания заказа");
-            }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
-            {
-                Id = order.Id,
-                ClientId = order.ClietnId,
-                ProductId = order.ProductId,
-                Count = order.Count,
-                Sum = order.Sum,
-                OrderDate = order.OrderDate,
-                ReserveDate = model.Date,
+                OrderDate = model.ReserveDate,
+                Sum = model.Sum,
+                ReserveDate = model.ReserveDate,
+                OrderProducts = model.OrderProduct
             }) ;
         }
-
         public void TookOrder(DateRecordingInOrderBindingModel model)
         {
             var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
@@ -64,8 +41,6 @@ namespace ITShopBusinessLogic.BusinessLogic
             {
                 Id = order.Id,
                 ClientId = order.ClietnId,
-                ProductId = order.ProductId,
-                Count = order.Count,
                 Sum = order.Sum,
                 OrderDate = order.OrderDate,
                 ReserveDate = order.ReserveDate,
