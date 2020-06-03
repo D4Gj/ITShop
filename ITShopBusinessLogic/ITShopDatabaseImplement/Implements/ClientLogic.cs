@@ -9,31 +9,35 @@ using ITShopDatabaseImplement.Models;
 
 namespace ITShopDatabaseImplement.Implements
 {
-    public class ClientLogic:IClientLogic
+    public class ClientLogic : IClientLogic
     {
         public void CreateOrUpdate(ClientBindingModel model)
         {
             using (var context = new ITShopDatabase())
             {
-                Client client;
+                Client element = context.Clients.FirstOrDefault(rec => rec.Login == model.Login && rec.Id != model.Id);
+                if (element != null)
+                {
+                    throw new Exception("Уже есть пользователь с таким логином");
+                }
                 if (model.Id.HasValue)
                 {
-                    client = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
-                    if (client == null)
+                    element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
+                    if (element == null)
                     {
                         throw new Exception("Элемент не найден");
                     }
                 }
                 else
                 {
-                    client = new Client();
-                    context.Clients.Add(client);
+                    element = new Client();
+                    context.Clients.Add(element);
                 }
-                client.Login = model.Login;
-                client.FirstName = model.FirstName;
-                client.LastName = model.LastName;
-                client.Password = model.Password;
-                client.Phone = model.Phone;
+                element.FirstName = model.FirstName;
+                element.LastName = model.LastName;
+                element.Phone = model.Phone;
+                element.Login = model.Login;
+                element.Password = model.Password;
                 context.SaveChanges();
             }
         }
@@ -61,13 +65,15 @@ namespace ITShopDatabaseImplement.Implements
             using(var context = new ITShopDatabase())
             {
                 return context.Clients
-                .Where(rec => model == null || rec.Id == model.Id ||
-                rec.Login == model.Login && rec.Password == model.Password)
+                .Where(rec => model == null ||
+                (model.Id.HasValue && rec.Id == model.Id) ||
+                (model.Login == rec.Login && model.Password == rec.Password))
                 .Select(rec => new ClientViewModel
                 {
                     Id = rec.Id,
                     FirstName = rec.FirstName,
-                    LastName = rec.LastName,                    
+                    LastName = rec.LastName,
+                    Phone = rec.Phone,
                     Login = rec.Login,
                     Password = rec.Password
                 })

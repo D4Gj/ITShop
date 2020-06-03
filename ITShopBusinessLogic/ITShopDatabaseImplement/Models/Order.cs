@@ -20,6 +20,6 @@ namespace ITShopDatabaseImplement.Models
         public DateTime? ReserveDate { get; set; }
         public DateTime? TookDate { get; set; }
         public virtual Client Client { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual List<OrderProduct> OrderProducts { get; set; }
     }
 }

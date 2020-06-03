@@ -29,6 +29,10 @@ namespace ITShopClientView
                 try
                 {
                     Program.Client = APIClient.GetRequest<ClientViewModel>($"api/client/login?login={textBoxEmail.Text}&password={textBoxPassword.Text}");
+                    if (Program.Client == null)
+                    {
+                        throw new Exception("Неверный логин или пароль");
+                    }
                     Close();
                 }
                 catch (Exception ex)

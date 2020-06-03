@@ -11,5 +11,7 @@ namespace ITShopBusinessLogic.BindingModels
         public int Count { get; set; }
         public decimal Sum { get; set; }
         public DateTime DateCreate { get; set; }
+
+        public Dictionary<int, (string, int)> ProductComponents { get; set; }
     }
 }

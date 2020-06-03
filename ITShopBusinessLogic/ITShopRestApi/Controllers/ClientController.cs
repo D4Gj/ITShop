@@ -54,10 +54,10 @@ namespace ITShopRestApi.Controllers
                 throw new Exception("В качестве логина должна быть указана почта");
             }
 
-            if(!Regex.IsMatch(model.Phone, @"^((8 |\+7)[\- ] ?)? (\(?\d{ 3}\)?[\- ]?)?[\d\- ]{7,10}$"))
+            /*if(!Regex.IsMatch(model.Phone, @"^((8 |\+7)[\- ] ?)? (\(?\d{ 3}\)?[\- ]?)?[\d\- ]{7,10}$"))
             { 
                 throw new Exception("Вы ввели не верный номер телефона!");
-            }
+            }*/
 
             if (model.Password.Length > _passwordMaxLength
                 && model.Password.Length < _passwordMinLength

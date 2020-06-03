@@ -17,5 +17,6 @@ namespace ITShopBusinessLogic.BindingModels
         public DateTime? TookDate { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
+        public Dictionary<int, (string, int)> OrderProducts { get; set; }
     }
 }

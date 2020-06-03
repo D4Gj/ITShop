@@ -23,5 +23,6 @@ namespace ITShopDatabaseImplement
         public virtual DbSet<Request> Requests{ get; set; }
         public virtual DbSet<RequestComponent> RequestComponents { get; set; }
         public virtual DbSet<MessageInfo> MessageInfoes { get; set; }
+        public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     }
 }
