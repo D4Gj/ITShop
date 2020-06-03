@@ -20,9 +20,9 @@ namespace ITShopBusinessLogic.BusinessLogic
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 ClientId = model.ClientId,
-                OrderDate = model.ReserveDate,
+                OrderDate = DateTime.Now,               
                 Sum = model.Sum,
-                ReserveDate = model.ReserveDate,
+                ReserveDate = DateTime.Now.AddDays(7),
                 OrderProducts = model.OrderProduct
             }) ;
         }

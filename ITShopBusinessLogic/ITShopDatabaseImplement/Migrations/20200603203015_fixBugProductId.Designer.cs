@@ -4,14 +4,16 @@ using ITShopDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(ITShopDatabase))]
-    partial class ITShopDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20200603203015_fixBugProductId")]
+    partial class fixBugProductId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,6 +107,9 @@ namespace ITShopDatabaseImplement.Migrations
 
                     b.Property<int?>("ClientId")
                         .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")

@@ -40,6 +40,7 @@ namespace ITShopWindowsApp
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[9].Visible = false;
                     dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
@@ -83,6 +84,27 @@ namespace ITShopWindowsApp
         {
             var form = Container.Resolve<FormRequests>();
             form.ShowDialog();
+        }
+
+        private void buttonInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView.SelectedRows.Count == 1)
+                {
+                    var form = Container.Resolve<FormAboutOrder>();
+                    int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    form.Id = id;
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                    }
+                }
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+            }
         }
     }
 }

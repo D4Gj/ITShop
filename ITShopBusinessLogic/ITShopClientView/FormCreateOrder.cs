@@ -79,8 +79,8 @@ namespace ITShopClientView
                 {
                     ClientId = Program.Client.Id,
                     //ClientFIO = Program.Client.FIO,
-                    ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
-                    Count = Convert.ToInt32(textBoxCount.Text),
+                    //ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
+                    //Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
 

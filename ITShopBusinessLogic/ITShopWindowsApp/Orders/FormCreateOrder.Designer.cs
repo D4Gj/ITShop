@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxSumm = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBoxCount = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
@@ -64,6 +62,7 @@
             // 
             // textBoxSumm
             // 
+            this.textBoxSumm.Enabled = false;
             this.textBoxSumm.Location = new System.Drawing.Point(98, 55);
             this.textBoxSumm.Name = "textBoxSumm";
             this.textBoxSumm.Size = new System.Drawing.Size(73, 20);
@@ -74,26 +73,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(1, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Стоимость";
-            // 
-            // textBoxCount
-            // 
-            this.textBoxCount.Location = new System.Drawing.Point(98, 29);
-            this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(73, 20);
-            this.textBoxCount.TabIndex = 6;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1, 32);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Количество";
+            this.label3.Text = "Сумма";
             // 
             // buttonCreateOrder
             // 
@@ -136,6 +118,7 @@
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonUpd
             // 
@@ -145,6 +128,7 @@
             this.buttonUpd.TabIndex = 2;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
+            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
             // 
             // buttonAdd
             // 
@@ -154,6 +138,7 @@
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // dataGridView
             // 
@@ -171,8 +156,6 @@
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCreateOrder);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxSumm);
             this.Controls.Add(this.label1);
@@ -193,8 +176,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxSumm;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxCount;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonCreateOrder;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBox;

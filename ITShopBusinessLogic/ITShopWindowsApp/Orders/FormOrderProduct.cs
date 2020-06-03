@@ -21,7 +21,12 @@ namespace ITShopWindowsApp.Orders
             get { return Convert.ToInt32(comboBoxProduct.SelectedValue); }
             set { comboBoxProduct.SelectedValue = value; }
         }
-        public string ComponentName { get { return comboBoxProduct.Text; } }
+        public string ProductName { get { return comboBoxProduct.Text; } }
+
+        public decimal Sum
+        {
+            get { return Convert.ToDecimal(textBoxSum.Text); }
+        }
 
         private void calcSumm()
         {
@@ -51,6 +56,7 @@ namespace ITShopWindowsApp.Orders
             set
             {
                 textBoxCount.Text = value.ToString();
+                calcSumm();
             }
         }
         public FormOrderProduct(IProductLogic logic)
@@ -87,6 +93,16 @@ namespace ITShopWindowsApp.Orders
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calcSumm();
+        }
+
+        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        {
+            calcSumm();
         }
     }
 }

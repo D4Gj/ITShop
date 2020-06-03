@@ -14,8 +14,6 @@ namespace ITShopWindowsApp.Orders
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public int Id { set { id = value; } }
-        private int? id;
         private readonly IProductLogic logicP;
         private readonly IClientLogic logicC;
         private readonly IOrderLogic logicO;
@@ -44,7 +42,7 @@ namespace ITShopWindowsApp.Orders
                 List<ClientViewModel> listC = logicC.Read(null);
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "FirstName LastName";
+                    comboBoxClient.DisplayMember = "Login";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
@@ -61,7 +59,7 @@ namespace ITShopWindowsApp.Orders
             {
                 try
                 {
-                    textBoxCount.Text = orderProduct.Sum(x => x.Value.Item3).ToString();
+                    textBoxSumm.Text = orderProduct.Sum(x => x.Value.Item3).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +81,7 @@ namespace ITShopWindowsApp.Orders
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            if (orderProduct != null && orderProduct.Count > 0)
+            if (orderProduct != null && orderProduct.Count < 1)
             {
                 MessageBox.Show("В корзине должен быть хотябы один товар", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -97,8 +95,6 @@ namespace ITShopWindowsApp.Orders
             {
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
-                    ReserveDate = DateTime.Now.AddDays(4),
-                    DateCreate = DateTime.Now,
                     OrderProduct = orderProduct,
                     Sum = Convert.ToDecimal(textBoxSumm.Text),
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue)
@@ -118,6 +114,81 @@ namespace ITShopWindowsApp.Orders
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormOrderProduct>();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (orderProduct.ContainsKey(form.Id))
+                {
+                    orderProduct[form.Id] = (form.ProductName, form.Count, form.Sum);
+                }
+                else
+                {
+                    orderProduct.Add(form.Id, (form.ProductName, form.Count, form.Sum));
+                }
+                LoadData();
+                CalcSum();
+            }
+           
+        }
+
+        private void buttonUpd_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormOrderProduct>();
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                int count = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[2].Value);
+                form.Id = id;
+                form.Count = count;
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    orderProduct[form.Id] = (form.ProductName, form.Count, form.Sum);
+                    LoadData();
+                }
+            }
+        }
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        orderProduct.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    }
+                    LoadData();
+                }
+            }
+        }
+        private void LoadData()
+        {
+            try
+            {
+                if (orderProduct != null)
+                {
+                    dataGridView.Rows.Clear();
+                    foreach (var pc in orderProduct)
+                    {
+                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 ,pc.Value.Item3});
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
         }
     }
 }

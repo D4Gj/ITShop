@@ -13,14 +13,10 @@ namespace ITShopBusinessLogic.ViewModels
         public int? ProductId { get; set; }
         [DisplayName("Идентификатор клиента")]
         public int? ClietnId { get; set; }
-        [DisplayName("Название продукта")]
-        public string ProductName { get; set; }
         [DisplayName("Имя")]
         public string ClientFirstName { get; set; }
         [DisplayName("Фамилия")]
         public string ClientLastName { get; set; }
-        [DisplayName("Количество")]
-        public int Count { get; set; }
         [DisplayName("Цена")]
         public decimal Sum { get; set; }
         [DisplayName("Дата создания заказа")]

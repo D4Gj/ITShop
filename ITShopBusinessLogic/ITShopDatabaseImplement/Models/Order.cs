@@ -8,11 +8,7 @@ namespace ITShopDatabaseImplement.Models
     {
         public int? Id { get; set; }
         [Required]
-        public int? ProductId { get; set; }
-        [Required]
         public int? ClientId { get; set; }
-        [Required]
-        public int Count { get; set; }
         [Required]
         public decimal Sum { get; set; }
         [Required]

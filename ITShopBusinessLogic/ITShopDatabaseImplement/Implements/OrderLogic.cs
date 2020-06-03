@@ -36,9 +36,7 @@ namespace ITShopDatabaseImplement.Implements
                             elem = new Order();
                             context.Orders.Add(elem);
                         }
-                        elem.ProductId = model.ProductId == 0 ? elem.ProductId : model.ProductId;
                         elem.ClientId = model.ClientId == 0 ? elem.ClientId : model.ClientId;
-                        elem.Count = model.Count;
                         elem.Sum = model.Sum;
                         elem.OrderDate = model.OrderDate;
                         elem.ReserveDate = model.ReserveDate;
@@ -52,6 +50,7 @@ namespace ITShopDatabaseImplement.Implements
                             foreach (var updateProduct in orderProduct)
                             {
                                 updateProduct.Count = model.OrderProducts[updateProduct.ProductId].Item2;
+                                updateProduct.Summ = model.OrderProducts[updateProduct.ProductId].Item3;
                                 model.OrderProducts.Remove(updateProduct.ProductId);
                             }
                         }
@@ -61,10 +60,12 @@ namespace ITShopDatabaseImplement.Implements
                             {
                                 OrderId = elem.Id,
                                 ProductId = pc.Key,
-                                Count = pc.Value.Item2
+                                Count = pc.Value.Item2,
+                                Summ = pc.Value.Item3
                             });
                             context.SaveChanges();
                         }
+                        context.SaveChanges();
                         transaction.Commit();
                     }
                     catch (Exception)
@@ -115,6 +116,9 @@ namespace ITShopDatabaseImplement.Implements
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClietnId = rec.ClientId,
+                    ClientFirstName = context.Clients.Where(x=> x.Id == rec.ClientId).ToList()[0].FirstName,
+                    ClientLastName = context.Clients.Where(x => x.Id == rec.ClientId).ToList()[0].LastName,
                     OrderDate = rec.OrderDate,
                     ReserveDate = rec.ReserveDate,
                     TookDate = rec.TookDate,                    
@@ -123,7 +127,7 @@ namespace ITShopDatabaseImplement.Implements
                 .Include(recPC => recPC.Product)
                 .Where(recPC => recPC.OrderId == rec.Id)
                 .ToDictionary(recPC => recPC.ProductId, recPC =>
-                (recPC.Product?.ProductName, recPC.Count, rec.Sum))
+                (recPC.Product?.ProductName, recPC.Count, recPC.Summ))
                 })
                 .ToList();
             }
