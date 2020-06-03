@@ -1,6 +1,6 @@
-﻿namespace ITShopWindowsApp.Product
+﻿namespace ITShopWindowsApp.Orders
 {
-    partial class FormProductComponent
+    partial class FormOrderProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -31,77 +31,75 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxCount = new System.Windows.Forms.TextBox();
-            this.comboBoxBillet = new System.Windows.Forms.ComboBox();
+            this.comboBoxProduct = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(133, 69);
+            this.buttonCancel.Location = new System.Drawing.Point(142, 66);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 17;
+            this.buttonCancel.TabIndex = 23;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(52, 69);
+            this.buttonSave.Location = new System.Drawing.Point(61, 66);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 16;
+            this.buttonSave.TabIndex = 22;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(87, 38);
+            this.textBoxCount.Location = new System.Drawing.Point(96, 35);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(121, 20);
-            this.textBoxCount.TabIndex = 15;
+            this.textBoxCount.TabIndex = 21;
             // 
-            // comboBoxBillet
+            // comboBoxProduct
             // 
-            this.comboBoxBillet.FormattingEnabled = true;
-            this.comboBoxBillet.Location = new System.Drawing.Point(87, 12);
-            this.comboBoxBillet.Name = "comboBoxBillet";
-            this.comboBoxBillet.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxBillet.TabIndex = 14;
+            this.comboBoxProduct.FormattingEnabled = true;
+            this.comboBoxProduct.Location = new System.Drawing.Point(96, 9);
+            this.comboBoxProduct.Name = "comboBoxProduct";
+            this.comboBoxProduct.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxProduct.TabIndex = 20;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 38);
+            this.label2.Location = new System.Drawing.Point(12, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 19;
             this.label2.Text = "Количество";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 12);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Компонент";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Продукт";
             // 
-            // FormProductComponent
+            // FormOrderProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(236, 108);
+            this.ClientSize = new System.Drawing.Size(222, 91);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxBillet);
+            this.Controls.Add(this.comboBoxProduct);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormProductComponent";
-            this.Text = "Компонент";
+            this.Name = "FormOrderProduct";
+            this.Text = "Продукт";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +110,7 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxCount;
-        private System.Windows.Forms.ComboBox comboBoxBillet;
+        private System.Windows.Forms.ComboBox comboBoxProduct;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }

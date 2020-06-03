@@ -12,6 +12,8 @@ namespace ITShopDatabaseImplement.Models
         public int ProductId { get; set; }
         [Required]
         public int Count { get; set; }
+        [Required]
+        public decimal Summ { get; set; }
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }

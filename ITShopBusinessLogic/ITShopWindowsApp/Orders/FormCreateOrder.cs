@@ -3,13 +3,8 @@ using ITShopBusinessLogic.BusinessLogic;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
 
@@ -19,34 +14,37 @@ namespace ITShopWindowsApp.Orders
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-
+        public int Id { set { id = value; } }
+        private int? id;
         private readonly IProductLogic logicP;
         private readonly IClientLogic logicC;
+        private readonly IOrderLogic logicO;
         private readonly MainLogic logicM;
-        public FormCreateOrder(IProductLogic logicP, MainLogic logicM, IClientLogic logicC)
+        private Dictionary<int, (string, int, decimal)> orderProduct;
+        public FormCreateOrder(IProductLogic logicP, MainLogic logicM, IClientLogic logicC, IOrderLogic logicO)
         {
             InitializeComponent();
             this.logicP = logicP;
             this.logicM = logicM;
             this.logicC = logicC;
+            this.logicO = logicO;
+            orderProduct = new Dictionary<int, (string, int, decimal)>();
+            dataGridView.Columns.Add("Id", "Id");
+            dataGridView.Columns.Add("ProductName", "Продукт");
+            dataGridView.Columns.Add("Count", "Количество");
+            dataGridView.Columns.Add("ProductPrice", "Цена");
+            dataGridView.Columns[0].Visible = false;
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ProductViewModel> listP = logicP.Read(null);
-                if (listP != null)
-                {
-                    comboBoxProduct.DisplayMember = "ProductName";
-                    comboBoxProduct.ValueMember = "Id";
-                    comboBoxProduct.DataSource = listP;
-                    comboBoxProduct.SelectedItem = null;
-                }
                 List<ClientViewModel> listC = logicC.Read(null);
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "LastName LastName";
+                    comboBoxClient.DisplayMember = "FirstName LastName";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
@@ -59,17 +57,11 @@ namespace ITShopWindowsApp.Orders
         }
         private void CalcSum()
         {
-            if (comboBoxProduct.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
+            if (orderProduct != null && orderProduct.Count > 0)
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    ProductViewModel product = logicP.Read(new ProductBindingModel
-                    {
-                        Id = id
-                    })?[0];
-                    int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSumm.Text = (count * product?.Price ?? 0).ToString();
+                    textBoxCount.Text = orderProduct.Sum(x => x.Value.Item3).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -91,14 +83,9 @@ namespace ITShopWindowsApp.Orders
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxCount.Text))
+            if (orderProduct != null && orderProduct.Count > 0)
             {
-                MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (comboBoxProduct.SelectedValue == null)
-            {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("В корзине должен быть хотябы один товар", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxClient.SelectedValue == null)
@@ -110,11 +97,12 @@ namespace ITShopWindowsApp.Orders
             {
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
-                    ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
-                    Count = Convert.ToInt32(textBoxCount.Text),
+                    ReserveDate = DateTime.Now.AddDays(4),
+                    DateCreate = DateTime.Now,
+                    OrderProduct = orderProduct,
                     Sum = Convert.ToDecimal(textBoxSumm.Text),
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue)
-                });
+                }) ;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

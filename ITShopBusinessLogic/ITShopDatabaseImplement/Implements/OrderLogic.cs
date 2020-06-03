@@ -123,7 +123,7 @@ namespace ITShopDatabaseImplement.Implements
                 .Include(recPC => recPC.Product)
                 .Where(recPC => recPC.OrderId == rec.Id)
                 .ToDictionary(recPC => recPC.ProductId, recPC =>
-                (recPC.Product?.ProductName, recPC.Count))
+                (recPC.Product?.ProductName, recPC.Count, rec.Sum))
                 })
                 .ToList();
             }

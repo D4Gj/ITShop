@@ -30,6 +30,6 @@ namespace ITShopBusinessLogic.ViewModels
         [DisplayName("Дата оплаты и получения клиентом ")]
         public DateTime? TookDate { get; set; }
         [DisplayName("Список покупок")]
-        public Dictionary<int, (string, int)> OrderProducts { get; set; }
+        public Dictionary<int, (string, int, decimal)> OrderProducts { get; set; }
     }
 }
