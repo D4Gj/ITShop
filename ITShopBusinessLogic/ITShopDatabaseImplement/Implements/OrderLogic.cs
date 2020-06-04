@@ -111,7 +111,7 @@ namespace ITShopDatabaseImplement.Implements
             using (var context = new ITShopDatabase())
             {
                 return context.Orders
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(rec => model == null || rec.Id == model.Id || rec.ClientId ==model.ClientId)
                 .ToList()
                 .Select(rec => new OrderViewModel
                 {

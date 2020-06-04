@@ -25,8 +25,8 @@ namespace ITShopClientView
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].Visible = false;
                 dataGridView.Columns[2].Visible = false;
-                dataGridView.Columns[3].Visible = false;
-                dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView.Columns[9].Visible = false;
+                dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             catch (Exception ex)
             {
@@ -60,5 +60,6 @@ namespace ITShopClientView
            // var form = new FormMessages();
            // form.ShowDialog();
         }
+
     }
 }

@@ -70,6 +70,7 @@
             this.Controls.Add(this.buttonRef);
             this.Name = "FormClient";
             this.Text = "FormClient";
+            this.Load += new System.EventHandler(this.FormClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
