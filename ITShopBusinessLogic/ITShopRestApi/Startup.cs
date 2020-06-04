@@ -34,6 +34,7 @@ namespace ITShopRestApi
             services.AddTransient<IProductLogic, ProductLogic>();
             services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
             services.AddTransient<MainLogic>();
+            services.AddTransient<ReportLogic>();
             services.AddControllers();
         }
 

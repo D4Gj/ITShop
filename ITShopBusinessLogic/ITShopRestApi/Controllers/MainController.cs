@@ -18,12 +18,14 @@ namespace ITShopRestApi.Controllers
         private readonly IOrderLogic _order;
         private readonly IProductLogic _product;
         private readonly MainLogic _main;
+        private readonly ReportLogic _report;
 
-        public MainController(IOrderLogic order, IProductLogic product, MainLogic main)
+        public MainController(IOrderLogic order, IProductLogic product, MainLogic main,ReportLogic report)
         {
             _order = order;
             _product = product;
             _main = main;
+            _report = report;
         }
         [HttpGet]
         public List<ProductViewModel> GetProductList() => _product.Read(null);
@@ -33,6 +35,8 @@ namespace ITShopRestApi.Controllers
             Id = productId
         })?.FirstOrDefault();
         [HttpGet]
+        [HttpPost]
+        public void DocProducts(ReportBindingModel model) => _report.DocProducts(model);
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) => _main.CreateOrder(model);

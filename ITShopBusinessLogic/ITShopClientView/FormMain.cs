@@ -57,8 +57,13 @@ namespace ITShopClientView
         }
         private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // var form = new FormMessages();
-           // form.ShowDialog();
+            // var form = new FormMessages();
+            // form.ShowDialog();
+            var form = new FormReports();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadList();
+            }
         }
 
     }
