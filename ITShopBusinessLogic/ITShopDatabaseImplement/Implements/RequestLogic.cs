@@ -41,20 +41,21 @@ namespace ITShopDatabaseImplement.Implements
                             element.RequestName = model.RequestName;
                             element.RequestDate = model.RequestDate;
                             context.SaveChanges();
-                            if (model.Id.HasValue)
-                            {
-                                var productComponents = context.ProductComponents.Where(rec => rec.ProductId == model.Id.Value).ToList();
-                                // удалили те, которых нет в модели
-                                context.ProductComponents.RemoveRange(productComponents.Where(rec => !model.RequestComponents.ContainsKey(rec.ComponentId)).ToList());
-                                context.SaveChanges();
-                                // обновили количество у существующих записей
-                                foreach (var updateComponent in productComponents)
-                                {
-                                    updateComponent.Count = model.RequestComponents[updateComponent.ComponentId].Item2;
-                                    model.RequestComponents.Remove(updateComponent.ComponentId);
-                                }
-                                context.SaveChanges();
-                            }
+                            // Код не нужен скорее всего 
+                            //if (model.Id.HasValue)
+                            //{
+                            //    var productComponents = context.ProductComponents.Where(rec => rec.ProductId == model.Id.Value).ToList();
+                            //    // удалили те, которых нет в модели
+                            //    context.ProductComponents.RemoveRange(productComponents.Where(rec => !model.RequestComponents.ContainsKey(rec.ComponentId)).ToList());
+                            //    context.SaveChanges();
+                            //    // обновили количество у существующих записей
+                            //    foreach (var updateComponent in productComponents)
+                            //    {
+                            //        updateComponent.Count = model.RequestComponents[updateComponent.ComponentId].Item2;
+                            //        model.RequestComponents.Remove(updateComponent.ComponentId);
+                            //    }
+                            //    context.SaveChanges();
+                            //}
                             // добавили новые
                             foreach (var pc in model.RequestComponents)
                             {
@@ -62,7 +63,8 @@ namespace ITShopDatabaseImplement.Implements
                                 {
                                     RequestId = element.Id,
                                     ComponentId = pc.Key,
-                                    Count = pc.Value.Item2
+                                    Count = pc.Value.Item2,
+                                    Left = pc.Value.Item3,
                                 });
                                 context.SaveChanges();
                             }
@@ -112,7 +114,7 @@ namespace ITShopDatabaseImplement.Implements
                 .Include(recPC => recPC.Component)
                 .Where(recPC => recPC.RequestId == rec.Id)
                 .ToDictionary(recPC => recPC.ComponentId, recPC =>
-                (recPC.Component?.ComponentName, recPC.Count))
+                (recPC.Component?.ComponentName, recPC.Count, recPC.Left))
                 })
                 .ToList(); 
             }

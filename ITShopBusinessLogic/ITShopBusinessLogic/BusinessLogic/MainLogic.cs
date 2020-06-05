@@ -44,7 +44,8 @@ namespace ITShopBusinessLogic.BusinessLogic
                 Sum = order.Sum,
                 OrderDate = order.OrderDate,
                 ReserveDate = order.ReserveDate,
-                TookDate = DateTime.Now
+                TookDate = DateTime.Now,
+                OrderProducts = order.OrderProducts
             });
         }
     }

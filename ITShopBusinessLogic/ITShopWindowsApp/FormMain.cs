@@ -8,6 +8,7 @@ using System;
 using System.Windows.Forms;
 using Unity;
 using ITShopWindowsApp.Request;
+using ITShopBusinessLogic.BindingModels;
 
 namespace ITShopWindowsApp
 {
@@ -104,6 +105,23 @@ namespace ITShopWindowsApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+            }
+        }
+
+        private void buttonFinalOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView.SelectedRows.Count == 1)
+                {                  
+                    logic.TookOrder(new DateRecordingInOrderBindingModel(){
+                        OrderId = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value),
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -12,6 +12,8 @@ namespace ITShopDatabaseImplement.Models
         public int ComponentId { get; set; }
         [Required]
         public int Count { get; set; }
+        [Required]
+        public int Left { get; set; }
         public virtual Component Component { get; set; }
         public virtual Request Request { get; set; }
     }

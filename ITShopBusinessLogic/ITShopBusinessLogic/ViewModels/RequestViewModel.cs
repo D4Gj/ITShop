@@ -13,7 +13,7 @@ namespace ITShopBusinessLogic.ViewModels
         public string RequestName { get; set; }
         [DisplayName("Дата запроса")]
         public DateTime RequestDate { get; set; }
-        // int - Id Компонента, (string - Название компонента, int - Количество компонента
-        public Dictionary<int, (string, int)> RequestComponents { get; set; }
+        // int - Id Компонента, (string - Название компонента, int - Количество компонента заказано, int - осталось)
+        public Dictionary<int, (string, int, int)> RequestComponents { get; set; }
     }
 }

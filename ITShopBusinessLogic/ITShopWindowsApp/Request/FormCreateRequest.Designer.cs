@@ -1,6 +1,6 @@
 ﻿namespace ITShopWindowsApp.Request
 {
-    partial class FormRequest
+    partial class FormCreateRequest
     {
         /// <summary>
         /// Required designer variable.

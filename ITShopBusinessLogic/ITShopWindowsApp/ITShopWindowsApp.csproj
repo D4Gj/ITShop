@@ -220,17 +220,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request\FormRequest.cs">
+    <Compile Include="Request\FormCreateRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Request\FormRequest.Designer.cs">
-      <DependentUpon>FormRequest.cs</DependentUpon>
+    <Compile Include="Request\FormCreateRequest.Designer.cs">
+      <DependentUpon>FormCreateRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Request\FormRequestComponent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Request\FormRequestComponent.Designer.cs">
       <DependentUpon>FormRequestComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Request\FormRequestInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Request\FormRequestInfo.Designer.cs">
+      <DependentUpon>FormRequestInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Request\FormRequests.cs">
       <SubType>Form</SubType>
@@ -277,11 +283,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Request\FormRequest.resx">
-      <DependentUpon>FormRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Request\FormCreateRequest.resx">
+      <DependentUpon>FormCreateRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Request\FormRequestComponent.resx">
       <DependentUpon>FormRequestComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Request\FormRequestInfo.resx">
+      <DependentUpon>FormRequestInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Request\FormRequests.resx">
       <DependentUpon>FormRequests.cs</DependentUpon>

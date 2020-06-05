@@ -38,6 +38,7 @@ namespace ITShopWindowsApp.Request
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -49,7 +50,7 @@ namespace ITShopWindowsApp.Request
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormRequest>();
+            var form = Container.Resolve<FormCreateRequest>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -59,7 +60,7 @@ namespace ITShopWindowsApp.Request
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormRequest>();
+                var form = Container.Resolve<FormCreateRequest>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -94,6 +95,19 @@ namespace ITShopWindowsApp.Request
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void buttonGetInfo_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormRequestInfo>();
+                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
         }
     }
 }

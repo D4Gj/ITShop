@@ -38,6 +38,7 @@
             this.запросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonInfo = new System.Windows.Forms.Button();
+            this.buttonFinalOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -129,11 +130,22 @@
             this.buttonInfo.UseVisualStyleBackColor = true;
             this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
             // 
+            // buttonFinalOrder
+            // 
+            this.buttonFinalOrder.Location = new System.Drawing.Point(595, 112);
+            this.buttonFinalOrder.Name = "buttonFinalOrder";
+            this.buttonFinalOrder.Size = new System.Drawing.Size(157, 21);
+            this.buttonFinalOrder.TabIndex = 13;
+            this.buttonFinalOrder.Text = "Заказ оплачен";
+            this.buttonFinalOrder.UseVisualStyleBackColor = true;
+            this.buttonFinalOrder.Click += new System.EventHandler(this.buttonFinalOrder_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 447);
+            this.Controls.Add(this.buttonFinalOrder);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.buttonUpd);
             this.Controls.Add(this.buttonCreateOrder);
@@ -162,5 +174,6 @@
         private System.Windows.Forms.Button buttonUpd;
         private System.Windows.Forms.ToolStripMenuItem запросыToolStripMenuItem;
         private System.Windows.Forms.Button buttonInfo;
+        private System.Windows.Forms.Button buttonFinalOrder;
     }
 }

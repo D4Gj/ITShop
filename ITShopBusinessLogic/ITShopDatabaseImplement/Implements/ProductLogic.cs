@@ -1,17 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using ITShopBusinessLogic.BindingModels;
+﻿using ITShopBusinessLogic.BindingModels;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using ITShopDatabaseImplement.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ITShopDatabaseImplement.Implements
 {
-    public class ProductLogic:IProductLogic
+    public class ProductLogic : IProductLogic
     {
+        IComponentLogic componentLogic;
+        public ProductLogic(IComponentLogic componentLogic)
+        {
+            this.componentLogic = componentLogic;
+        }
+        public void writeOffProduct(int ProductId, int CountProduct)
+        {
+            using (var context = new ITShopDatabase())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    var ListComponent = context.ProductComponents.Where(x => x.ProductId == ProductId).ToList();
+                    foreach (var temp in ListComponent)
+                    {
+                        if (componentLogic.getLeftByComponentId(temp.ComponentId) >= temp.Count * CountProduct)
+                        {
+                            componentLogic.writeOff(temp.ComponentId, temp.Count * CountProduct);
+                        } 
+                        else
+                        {
+                            transaction.Rollback();
+                            throw new Exception("Нехватает компонентов");
+                        }
+                    }
+                    transaction.Commit();
+                }
+                context.SaveChanges();
+            }
+        }
         public void CreateOrUpdate(ProductBindingModel model)
         {
             using (var context = new ITShopDatabase())
@@ -61,7 +89,7 @@ namespace ITShopDatabaseImplement.Implements
                             context.ProductComponents.Add(new ProductComponent
                             {
                                 ProductId = element.Id,
-                                ComponentId = pc.Key,                                
+                                ComponentId = pc.Key,
                                 Count = pc.Value.Item2
                             });
                             context.SaveChanges();
@@ -118,7 +146,7 @@ namespace ITShopDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ProductName = rec.ProductName,
-                    Price = rec.ProductPrice,                    
+                    Price = rec.ProductPrice,
                     ProductCompunents = context.ProductComponents
                 .Include(recPC => recPC.Component)
                 .Where(recPC => recPC.ProductId == rec.Id)
@@ -127,6 +155,24 @@ namespace ITShopDatabaseImplement.Implements
                 })
                 .ToList();
             }
+        }
+
+        public Dictionary<int, int> howMuchIsMissingComponents(int ProductId, int CountProduct)
+        {
+            Dictionary<int, int> needComponents = new Dictionary<int, int>();
+            using (var context = new ITShopDatabase())
+            {
+                var ListComponent = context.ProductComponents.Where(x => x.ProductId == ProductId).ToList();
+                foreach(var component in ListComponent)
+                {
+                    var temp = componentLogic.howMuchIsMissingComponents(component.ComponentId, component.Count * CountProduct);
+                    if(temp > 0)
+                    {
+                        needComponents.Add(component.ComponentId, temp);
+                    }
+                }
+            }
+            return needComponents;
         }
     }
 }

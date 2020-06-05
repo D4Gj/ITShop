@@ -11,5 +11,7 @@ namespace ITShopBusinessLogic.Interfaces
         List<ProductViewModel> Read(ProductBindingModel model);
         void CreateOrUpdate(ProductBindingModel model);
         void Delete(ProductBindingModel model);
+        void writeOffProduct(int ProductId, int CountProduct);
+        Dictionary<int, int> howMuchIsMissingComponents(int ProductId, int CountProduct);
     }
 }

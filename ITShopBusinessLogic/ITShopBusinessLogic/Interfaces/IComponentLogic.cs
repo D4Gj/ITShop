@@ -11,5 +11,8 @@ namespace ITShopBusinessLogic.Interfaces
         List<ComponentViewModel> Read(ComponentBindingModel model);
         void CreateOrUpdate(ComponentBindingModel model);
         void Delete(ComponentBindingModel model);
+        int getLeftByComponentId(int ComponentId);
+        int howMuchIsMissingComponents(int ComponentId, int CountComponent);
+        void writeOff(int ComponentId, int CountComponent);
     }
 }

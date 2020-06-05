@@ -14,21 +14,22 @@ using Unity;
 
 namespace ITShopWindowsApp.Request
 {
-    public partial class FormRequest : Form
+    public partial class FormCreateRequest : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
         private readonly IRequestLogic logic;
         private int? id;
-        private Dictionary<int, (string, int)> requestComponents;
-        public FormRequest(IRequestLogic logic)
+        private Dictionary<int, (string, int, int)> requestComponents;
+        public FormCreateRequest(IRequestLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
             dataGridView.Columns.Add("Id", "Id");
             dataGridView.Columns.Add("ComponentName", "Компонент");
-            dataGridView.Columns.Add("Count", "Количество");
+            dataGridView.Columns.Add("Count", "Заказано");
+            dataGridView.Columns.Add("Left", "Осталось");
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
@@ -57,7 +58,7 @@ namespace ITShopWindowsApp.Request
             }
             else
             {
-                requestComponents = new Dictionary<int, (string, int)>();
+                requestComponents = new Dictionary<int, (string, int, int)>();
             }
         }
         private void LoadData()
@@ -69,7 +70,7 @@ namespace ITShopWindowsApp.Request
                     dataGridView.Rows.Clear();
                     foreach (var pc in requestComponents)
                     {
-                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
+                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2, pc.Value.Item3 });
                     }
                 }
             }
@@ -87,11 +88,11 @@ namespace ITShopWindowsApp.Request
             {
                 if (requestComponents.ContainsKey(form.Id))
                 {
-                    requestComponents[form.Id] = (form.ComponentName, form.Count);
+                    requestComponents[form.Id] = (form.ComponentName, form.Count,form.Count);
                 }
                 else
                 {
-                    requestComponents.Add(form.Id, (form.ComponentName, form.Count));
+                    requestComponents.Add(form.Id, (form.ComponentName, form.Count,form.Count));
                 }
                 LoadData();
             }
@@ -107,7 +108,7 @@ namespace ITShopWindowsApp.Request
                 form.Count = requestComponents[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    requestComponents[form.Id] = (form.ComponentName, form.Count);
+                    requestComponents[form.Id] = (form.ComponentName, form.Count, form.Count);
                     LoadData();
                 }
             }

@@ -11,6 +11,42 @@ namespace ITShopDatabaseImplement.Implements
 {
     public class ComponentLogic : IComponentLogic
     {
+
+        public int getLeftByComponentId(int ComponentId)
+        {
+            using (var context = new ITShopDatabase())
+            {
+                return context.RequestComponents.Where(x => x.ComponentId == ComponentId).Sum(y => y.Left);
+            }                   
+        }
+
+        public void writeOff(int ComponentId, int CountComponent)
+        {
+            using (var context = new ITShopDatabase())
+            {
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    var ListLeft = context.RequestComponents.Where(x => x.ComponentId == ComponentId).ToList();
+                    foreach (var component in ListLeft)
+                    {
+                        if (component.Left >= CountComponent)
+                        {
+                            component.Left -= CountComponent;
+                            context.SaveChanges();
+                            transaction.Commit();
+                            return;
+                        }
+                        else
+                        {
+                            CountComponent -= component.Left;
+                            component.Left = 0;
+                        }
+                    }
+                    transaction.Rollback();
+                }
+            }
+        }
+
         public void CreateOrUpdate(ComponentBindingModel model)
         {
             using (var context = new ITShopDatabase())
@@ -71,6 +107,17 @@ namespace ITShopDatabaseImplement.Implements
                     ComponentPrice = rec.ComponentPrice
                 })
                 .ToList();
+            }
+        }
+
+        public int howMuchIsMissingComponents(int ComponentId, int CountProduct)
+        {
+            if(CountProduct > getLeftByComponentId(ComponentId))
+            {
+                return Math.Abs(getLeftByComponentId(ComponentId)-CountProduct);
+            } else
+            {
+                return 0;
             }
         }
     }
