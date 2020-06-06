@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -16,6 +17,7 @@ namespace ITShopClientView
     {
         private List<int> ids = new List<int>();
         private string str = "";
+        private readonly string path = "D:\\Products.docx";
         private List<ProductViewModel> products = APIClient.GetRequest<List<ProductViewModel>>($"api/main/getproductlist");
 
         public FormReports()
@@ -42,7 +44,7 @@ namespace ITShopClientView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            ids.Add(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+           
             foreach (var product in products)
             {
                 if (product.Id == Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value))
@@ -54,10 +56,11 @@ namespace ITShopClientView
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            
+            ids.Add(Convert.ToInt32(dataGridView.Rows[0].Cells[0].Value));
+
             APIClient.PostRequest($"api/main/docproducts", new ReportBindingModel
             {
-                FileName = "D:\\Products.docx",
+                FileName = path,
                 ClientId = Program.Client.Id,
                 ProductsId = ids
             });
@@ -68,7 +71,7 @@ namespace ITShopClientView
             MailAddress to = new MailAddress("inzadimonax@gmail.com");
             // создаем объект сообщения
             MailMessage m = new MailMessage(from, to);
-            m.Attachments.Add(new Attachment("D:\\Products.docx"));
+            m.Attachments.Add(new Attachment(path));
             // письмо представляет код html
             m.IsBodyHtml = true;
             // адрес smtp-сервера и порт, с которого будем отправлять письмо

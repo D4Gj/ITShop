@@ -37,6 +37,7 @@ namespace ITShopRestApi.Controllers
         [HttpGet]
         [HttpPost]
         public void DocProducts(ReportBindingModel model) => _report.DocProducts(model);
+        [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) => _main.CreateOrder(model);
