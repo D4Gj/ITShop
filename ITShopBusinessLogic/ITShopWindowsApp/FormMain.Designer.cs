@@ -39,6 +39,8 @@
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonInfo = new System.Windows.Forms.Button();
             this.buttonFinalOrder = new System.Windows.Forms.Button();
+            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.движениеКомпонентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +66,8 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.справочникToolStripMenuItem});
+            this.справочникToolStripMenuItem,
+            this.отчетыToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(765, 24);
@@ -140,6 +143,21 @@
             this.buttonFinalOrder.UseVisualStyleBackColor = true;
             this.buttonFinalOrder.Click += new System.EventHandler(this.buttonFinalOrder_Click);
             // 
+            // отчетыToolStripMenuItem
+            // 
+            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.движениеКомпонентовToolStripMenuItem});
+            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            // 
+            // движениеКомпонентовToolStripMenuItem
+            // 
+            this.движениеКомпонентовToolStripMenuItem.Name = "движениеКомпонентовToolStripMenuItem";
+            this.движениеКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.движениеКомпонентовToolStripMenuItem.Text = "Движение компонентов";
+            this.движениеКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.движениеКомпонентовToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,5 +193,7 @@
         private System.Windows.Forms.ToolStripMenuItem запросыToolStripMenuItem;
         private System.Windows.Forms.Button buttonInfo;
         private System.Windows.Forms.Button buttonFinalOrder;
+        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem движениеКомпонентовToolStripMenuItem;
     }
 }
