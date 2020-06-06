@@ -32,6 +32,7 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.buttonOkExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +72,16 @@
             this.textBox.Size = new System.Drawing.Size(139, 218);
             this.textBox.TabIndex = 4;
             // 
+            // buttonOkExcel
+            // 
+            this.buttonOkExcel.Location = new System.Drawing.Point(436, 398);
+            this.buttonOkExcel.Name = "buttonOkExcel";
+            this.buttonOkExcel.Size = new System.Drawing.Size(159, 26);
+            this.buttonOkExcel.TabIndex = 5;
+            this.buttonOkExcel.Text = "Отправить в формате Excel";
+            this.buttonOkExcel.UseVisualStyleBackColor = true;
+            this.buttonOkExcel.Click += new System.EventHandler(this.buttonOkExcel_Click);
+            // 
             // Formtest2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -80,6 +91,7 @@
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.buttonOk);
+            this.Controls.Add(this.buttonOkExcel);
             this.Name = "Formtest2";
             this.Text = "Formtest2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -89,7 +101,7 @@
         }
 
         #endregion
-
+        private System.Windows.Forms.Button buttonOkExcel;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonAdd;

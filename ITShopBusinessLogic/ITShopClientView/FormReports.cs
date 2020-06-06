@@ -17,8 +17,9 @@ namespace ITShopClientView
     {
         private List<int> ids = new List<int>();
         private string str = "";
-        private readonly string path = "D:\\Products.docx";
-        private List<ProductViewModel> products = APIClient.GetRequest<List<ProductViewModel>>($"api/main/getproductlist");
+        private readonly string pathDocx = "D:\\Products.docx";
+        private readonly string pathExcel = "D:\\Products.xlsx";
+        private List<OrderViewModel> products = APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}");
 
         public FormReports()
         {
@@ -29,11 +30,11 @@ namespace ITShopClientView
         {
             try
             {
-                dataGridView.DataSource = APIClient.GetRequest<List<ProductViewModel>>($"api/main/getproductlist");
-                //dataGridView.Columns[0].Visible = false;
-                //dataGridView.Columns[1].Visible = false;
+                dataGridView.DataSource = APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}");
+                dataGridView.Columns[0].Visible = false;
+                dataGridView.Columns[1].Visible = false;
                 dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                //dataGridView.Columns[3].Visible = true;
+                dataGridView.Columns[3].Visible = true;
                 //dataGridView.Columns[5].Visible = false;
             }
             catch (Exception ex)
@@ -44,42 +45,47 @@ namespace ITShopClientView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-           
+            ids.Add(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
             foreach (var product in products)
             {
                 if (product.Id == Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value))
                 {
-                    str += product.ProductName + Environment.NewLine;
+                    str += product.OrderDate + Environment.NewLine;
                 }
             }
             textBox.Text = str;
         }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            ids.Add(Convert.ToInt32(dataGridView.Rows[0].Cells[0].Value));
+            
 
             APIClient.PostRequest($"api/main/docproducts", new ReportBindingModel
             {
-                FileName = path,
+                FileName = pathDocx,
                 ClientId = Program.Client.Id,
-                ProductsId = ids
+                Orders = ids
+            });
+            APIClient.PostRequest($"api/main/sendmessage", new ReportBindingModel
+            {
+                FileName = pathDocx,
+                Login = Program.Client.Login
             });
             MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // отправитель - устанавливаем адрес и отображаемое в письме имя
-            MailAddress from = new MailAddress("labwork15kafis@gmail.com");
-            // кому отправляем
-            MailAddress to = new MailAddress("inzadimonax@gmail.com");
-            // создаем объект сообщения
-            MailMessage m = new MailMessage(from, to);
-            m.Attachments.Add(new Attachment(path));
-            // письмо представляет код html
-            m.IsBodyHtml = true;
-            // адрес smtp-сервера и порт, с которого будем отправлять письмо
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            // логин и пароль
-            smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
-            smtp.EnableSsl = true;
-            smtp.Send(m);
+        }
+        private void buttonOkExcel_Click(object sender, EventArgs e)
+        {
+            APIClient.PostRequest($"api/main/excelproducts", new ReportBindingModel
+            {
+                FileName = pathExcel,
+                ClientId = Program.Client.Id,
+                Orders = ids
+            });
+            APIClient.PostRequest($"api/main/sendmessage", new ReportBindingModel
+            {
+                FileName = pathExcel,
+                Login = Program.Client.Login
+            });
+            MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

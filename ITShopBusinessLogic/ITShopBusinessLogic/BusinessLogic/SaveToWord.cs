@@ -28,11 +28,11 @@ namespace ITShopBusinessLogic.BusinessLogic
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var product in info.Products)
+                foreach (var product in info.Orders)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<string> { product.ProductName, ":" + product.Price, ":" },
+                        Texts = new List<string> { product.ProductName, product.Count + ":", product.Price + ":", product.date +":"},
                         TextProperties = new WordParagraphProperties
                         {
                             Bold = true,
