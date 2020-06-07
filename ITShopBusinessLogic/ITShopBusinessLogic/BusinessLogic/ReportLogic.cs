@@ -56,7 +56,6 @@ namespace ITShopBusinessLogic.BusinessLogic
             }
             return list;
         }
-
         public void DocProducts(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
@@ -130,7 +129,6 @@ namespace ITShopBusinessLogic.BusinessLogic
             }
             return reportMoveViewModels.OrderBy(x=> x.Date).ToList();
         }
-
         public void SaveOperationsToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo()
@@ -140,6 +138,19 @@ namespace ITShopBusinessLogic.BusinessLogic
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
                 Opetarions = getOperations(model)
+            });
+        }
+        public RequestViewModel GetRequest(ReportBindingModel model)
+        {
+            return requestLogic.Read(new RequestBindingModel() { Id = model.RequestId }).First();
+        }
+        public void RequestInWord(ReportBindingModel model)
+        {
+            SaveToWord.CreateDocRequestForMail(new WordInfoRequest
+            {
+                FileName = model.FileName,
+                Title = "Запрос №"+model.RequestId,
+                requestViewModel = GetRequest(model),
             });
         }
     }

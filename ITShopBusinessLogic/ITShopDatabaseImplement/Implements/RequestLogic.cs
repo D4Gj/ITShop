@@ -1,4 +1,5 @@
 ﻿using ITShopBusinessLogic.BindingModels;
+using ITShopBusinessLogic.BusinessLogic;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using ITShopDatabaseImplement.Models;
@@ -12,6 +13,7 @@ namespace ITShopDatabaseImplement.Implements
 {
     public class RequestLogic : IRequestLogic
     {
+        private readonly ReportLogic reportLogic;
         public void CreateOrUpdate(RequestBindingModel model)
         {        
                 using (var context = new ITShopDatabase())
@@ -41,22 +43,6 @@ namespace ITShopDatabaseImplement.Implements
                             element.RequestName = model.RequestName;
                             element.RequestDate = model.RequestDate;
                             context.SaveChanges();
-                            // Код не нужен скорее всего 
-                            //if (model.Id.HasValue)
-                            //{
-                            //    var productComponents = context.ProductComponents.Where(rec => rec.ProductId == model.Id.Value).ToList();
-                            //    // удалили те, которых нет в модели
-                            //    context.ProductComponents.RemoveRange(productComponents.Where(rec => !model.RequestComponents.ContainsKey(rec.ComponentId)).ToList());
-                            //    context.SaveChanges();
-                            //    // обновили количество у существующих записей
-                            //    foreach (var updateComponent in productComponents)
-                            //    {
-                            //        updateComponent.Count = model.RequestComponents[updateComponent.ComponentId].Item2;
-                            //        model.RequestComponents.Remove(updateComponent.ComponentId);
-                            //    }
-                            //    context.SaveChanges();
-                            //}
-                            // добавили новые
                             foreach (var pc in model.RequestComponents)
                             {
                                 context.RequestComponents.Add(new RequestComponent
@@ -69,6 +55,11 @@ namespace ITShopDatabaseImplement.Implements
                                 context.SaveChanges();
                             }
                             transaction.Commit();
+                            reportLogic.RequestInWord(new ReportBindingModel
+                            {
+                                FileName = "C:\\Windows\\Temp\\",
+                                RequestId = element.Id,
+                            });
                         }
                         catch (Exception)
                         {

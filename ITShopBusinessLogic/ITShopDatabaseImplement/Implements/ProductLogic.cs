@@ -1,4 +1,5 @@
 ﻿using ITShopBusinessLogic.BindingModels;
+using ITShopBusinessLogic.BusinessLogic;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using ITShopDatabaseImplement.Models;
@@ -11,7 +12,7 @@ namespace ITShopDatabaseImplement.Implements
 {
     public class ProductLogic : IProductLogic
     {
-        IComponentLogic componentLogic;
+        private readonly IComponentLogic componentLogic;
         public ProductLogic(IComponentLogic componentLogic)
         {
             this.componentLogic = componentLogic;

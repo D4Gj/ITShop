@@ -13,9 +13,7 @@ namespace ITShopWindowsApp
 {
     static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
+        private static string mailForRequest;
         [STAThread]
         static void Main()
         {
@@ -27,7 +25,7 @@ namespace ITShopWindowsApp
                 MailLogin = ConfigurationManager.AppSettings["MailLogin"],
                 MailPassword = ConfigurationManager.AppSettings["MailPassword"],
             });
-
+            mailForRequest = ConfigurationManager.AppSettings["MailForRequest"];
             var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new MailCheckInfo
             {
                 PopHost = ConfigurationManager.AppSettings["PopHost"],
