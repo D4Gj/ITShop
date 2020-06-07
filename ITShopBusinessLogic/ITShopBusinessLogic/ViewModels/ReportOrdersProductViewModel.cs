@@ -10,6 +10,7 @@ namespace ITShopBusinessLogic.ViewModels
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Count { get; set; }
+        public List<int> Products { get; set; }
         public DateTime? date { get; set; }
     }
 }

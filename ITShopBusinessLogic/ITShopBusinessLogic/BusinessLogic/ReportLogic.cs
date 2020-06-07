@@ -26,9 +26,9 @@ namespace ITShopBusinessLogic.BusinessLogic
             this.orderLogic = orderLogic;
             this.requestLogic = requestLogic;
         }
-        public List<ReportOrdersProductViewModel> GetProducts(ReportBindingModel model)
+        public List<OrderViewModel> GetProducts(ReportBindingModel model)
         {
-            var list = new List<ReportOrdersProductViewModel>();
+            var list = new List<OrderViewModel>();
             foreach (var orderId in model.Orders)
             {
                 var products = productLogic.Read(null);
@@ -36,24 +36,7 @@ namespace ITShopBusinessLogic.BusinessLogic
                 {
                     Id = orderId
                 });
-
-                foreach (var product in products)
-                {
-                    foreach (var order in orders)
-                    {
-                        if (order.OrderProducts.ContainsKey(product.Id))
-                        {
-                            var record = new ReportOrdersProductViewModel
-                            {
-                                ProductName = order.OrderProducts[product.Id].Item1,
-                                Price = product.Price,
-                                Count = order.OrderProducts[product.Id].Item2,
-                                date =order.OrderDate                            
-                            };
-                            list.Add(record);
-                        }
-                    }
-                }
+                list.Add(orders.First());
             }
             return list;
         }
@@ -66,15 +49,15 @@ namespace ITShopBusinessLogic.BusinessLogic
                 Orders = GetProducts(model)
             });
         }
-        public void ExcelProducts(ReportBindingModel model)
-        {
-            SaveToExcel.CreateDoc(new ExcelInfo
-            {
-                FileName = model.FileName,
-                Title = "Товары",
-                Products = GetProducts(model)
-            });
-        }
+        //public void ExcelProducts(ReportBindingModel model)
+        //{
+        //    SaveToExcel.CreateDoc(new ExcelInfo
+        //    {
+        //        FileName = model.FileName,
+        //        Title = "Товары",
+        //        Products = GetProducts(model)
+        //    });
+        //}
         public void SendMessage(ReportBindingModel model)
         {
             MailAddress from = new MailAddress("labwork15kafis@gmail.com");
