@@ -11,5 +11,7 @@ namespace ITShopBusinessLogic.BindingModels
         public DateTime DateCreate { get; set; }
         public DateTime ReserveDate { get; set; }
         public Dictionary<int, (string, int, decimal)> OrderProduct { get; set; }
+        public bool mailInWord { get; set; }
+        public bool mailInExel { get; set; }
     }
 }

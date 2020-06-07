@@ -46,7 +46,7 @@ namespace ITShopBusinessLogic.BusinessLogic
                 wordDocument.MainDocumentPart.Document.Save();
             }
         }
-        public static void CreateDocRequestForMail(WordInfoRequest info)
+        public static void CreateDocRequestForMail(InfoRequest info)
         {
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
             {

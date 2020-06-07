@@ -91,14 +91,20 @@ namespace ITShopWindowsApp.Orders
                 MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (logicO.howMuchIsMissingComponents(orderProduct).Count>0)
+            {
+                MessageBox.Show("Нехватает компонентов для продуктов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     OrderProduct = orderProduct,
                     Sum = Convert.ToDecimal(textBoxSumm.Text),
-                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue)
-                }) ;
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                });
+
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

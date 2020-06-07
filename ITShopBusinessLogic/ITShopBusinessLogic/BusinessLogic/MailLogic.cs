@@ -38,7 +38,7 @@ namespace ITShopBusinessLogic.BusinessLogic
                 return;
             }
 
-            if (string.IsNullOrEmpty(info.MailAddress) || string.IsNullOrEmpty(info.Subject) || string.IsNullOrEmpty(info.Text))
+            if (string.IsNullOrEmpty(info.MailAddress) || string.IsNullOrEmpty(info.Subject) || (string.IsNullOrEmpty(info.Text) && string.IsNullOrEmpty(info.FileName)))
             {
                 return;
             }
@@ -55,7 +55,7 @@ namespace ITShopBusinessLogic.BusinessLogic
                         objMailMessage.Body = info.Text;
                         objMailMessage.SubjectEncoding = Encoding.UTF8;
                         objMailMessage.BodyEncoding = Encoding.UTF8;
-
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName));
                         objSmtpClient.UseDefaultCredentials = false;
                         objSmtpClient.EnableSsl = true;
                         objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -70,7 +70,6 @@ namespace ITShopBusinessLogic.BusinessLogic
                 }
             }
         }
-
         public static async void MailCheck(MailCheckInfo info)
         {
             if (string.IsNullOrEmpty(info.PopHost) || info.PopPort == 0)
@@ -115,6 +114,6 @@ namespace ITShopBusinessLogic.BusinessLogic
                     client.Disconnect(true);
                 });
             }
-        }
+        }       
     }
 }

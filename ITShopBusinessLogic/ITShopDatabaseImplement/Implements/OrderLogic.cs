@@ -1,4 +1,5 @@
 ﻿using ITShopBusinessLogic.BindingModels;
+using ITShopBusinessLogic.BusinessLogic;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using ITShopDatabaseImplement.Models;
@@ -13,8 +14,8 @@ namespace ITShopDatabaseImplement.Implements
 {
     public class OrderLogic : IOrderLogic
     {
-        IProductLogic productLogic;
-        IRequestLogic requestLogic;
+        private readonly IProductLogic productLogic;
+        private readonly IRequestLogic requestLogic;
         public OrderLogic(IProductLogic productLogic,IRequestLogic requestLogic)
         {
             this.productLogic = productLogic;
@@ -42,16 +43,6 @@ namespace ITShopDatabaseImplement.Implements
                         {
                             elem = new Order();
                             context.Orders.Add(elem);
-                            var need = howMuchIsMissingComponents(model.OrderProducts);
-                            if (need.Count > 0)
-                            {
-                                requestLogic.CreateOrUpdate(new RequestBindingModel
-                                {
-                                    RequestDate = DateTime.Now,
-                                    RequestComponents = need.ToDictionary(x => x.Key, x => (context.Components.First(y => y.Id == x.Key).ComponentName, x.Value, x.Value)),
-                                    RequestName = DateTime.Now.ToString(),
-                                });
-                            }
                         }
                         elem.ClientId = model.ClientId == 0 ? elem.ClientId : model.ClientId;
                         elem.Sum = model.Sum;
@@ -154,10 +145,10 @@ namespace ITShopDatabaseImplement.Implements
             }
         }
 
-        private Dictionary<int,int> howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> ListProducts)
+        Dictionary<int, int> IOrderLogic.howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts)
         {
             Dictionary<int, int> needComponent = new Dictionary<int, int>();
-            foreach(var ProductComponents in ListProducts)
+            foreach (var ProductComponents in OrderProducts)
             {
                 var temp = productLogic.howMuchIsMissingComponents(ProductComponents.Key, ProductComponents.Value.Item2);
                 SummDictionary(needComponent, temp);

@@ -143,6 +143,23 @@ namespace ITShopWindowsApp
                     reportLogic.RequestInWord(new ReportBindingModel
                     {
                         FileName = dialog.FileName,
+                        RequestId = 24,
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void запросВФорматеExelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    reportLogic.RequestInExel(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName,
                         RequestId = 9,
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,

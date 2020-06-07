@@ -8,6 +8,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
 using ITShopBusinessLogic.HelperModels;
+using ITShopBusinessLogic.Interfaces;
 
 namespace ITShopBusinessLogic.BusinessLogic
 {
@@ -87,6 +88,152 @@ namespace ITShopBusinessLogic.BusinessLogic
                         });
                         rowIndex++;
                 }               
+                workbookpart.Workbook.Save();
+            }
+        }
+        public static void CreateDocRequestForMail(InfoRequest infoRequest)
+        {
+            using (SpreadsheetDocument spreadsheetDocument =
+           SpreadsheetDocument.Create(infoRequest.FileName, SpreadsheetDocumentType.Workbook))
+            {
+                // Создаем книгу (в ней хранятся листы)
+                WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+                workbookpart.Workbook = new Workbook();
+                CreateStyles(workbookpart);
+                // Получаем/создаем хранилище текстов для книги
+                SharedStringTablePart shareStringPart =
+               spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0
+                ?
+               spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+                :
+               spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                // Создаем SharedStringTable, если его нет
+                if (shareStringPart.SharedStringTable == null)
+                {
+                    shareStringPart.SharedStringTable = new SharedStringTable();
+                }
+                // Создаем лист в книгу
+                WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+                // Добавляем лист в книгу
+                Sheets sheets =
+               spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+                Sheet sheet = new Sheet()
+                {
+                    Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
+                    SheetId = 1,
+                    Name = "Лист"
+                };
+                sheets.Append(sheet);
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "A",
+                    RowIndex = 1,
+                    Text = infoRequest.Title,
+                    StyleIndex = 2U
+                });
+                MergeCells(new ExcelMergeParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    CellFromName = "A1",
+                    CellToName = "D1"
+                });             
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "A",
+                    RowIndex = 2,
+                    Text = infoRequest.requestViewModel.RequestDate.ToString(),
+                    StyleIndex = 2U
+                });
+                MergeCells(new ExcelMergeParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    CellFromName = "A2",
+                    CellToName = "D2"
+                });
+                uint rowIndex = 3;
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "A",
+                    RowIndex = rowIndex,
+                    Text = "Артикул",
+                    StyleIndex = 1U
+                });
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "B",
+                    RowIndex = rowIndex,
+                    Text = "Компонент",
+                    StyleIndex = 1U
+                });
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "C",
+                    RowIndex = rowIndex,
+                    Text = "Количество",
+                    StyleIndex = 1U
+                });
+                InsertCellInWorksheet(new ExcelCellParameters
+                {
+                    Worksheet = worksheetPart.Worksheet,
+                    ShareStringPart = shareStringPart,
+                    ColumnName = "D",
+                    RowIndex = rowIndex,
+                    Text = "Стоимость за 1",
+                    StyleIndex = 1U
+                });
+                rowIndex++;
+                foreach (var product in infoRequest.requestViewModel.RequestComponents)
+                {
+
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "A",
+                        RowIndex = rowIndex,
+                        Text = product.Key.ToString(),
+                        StyleIndex = 1U
+                    });
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "B",
+                        RowIndex = rowIndex,
+                        Text = product.Value.Item1.ToString(),
+                        StyleIndex = 1U
+                    });
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "C",
+                        RowIndex = rowIndex,
+                        Text = product.Value.Item2.ToString(),
+                        StyleIndex = 1U
+                    });
+                    InsertCellInWorksheet(new ExcelCellParameters
+                    {
+                        Worksheet = worksheetPart.Worksheet,
+                        ShareStringPart = shareStringPart,
+                        ColumnName = "D",
+                        RowIndex = rowIndex,
+                        Text = product.Value.Item3.ToString(),
+                        StyleIndex = 1U
+                    });
+                    rowIndex++;
+                }
                 workbookpart.Workbook.Save();
             }
         }

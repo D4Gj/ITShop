@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ITShopBusinessLogic.BindingModels;
 using ITShopBusinessLogic.Enums;
+using ITShopBusinessLogic.HelperModels;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 
@@ -11,9 +12,11 @@ namespace ITShopBusinessLogic.BusinessLogic
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly ReportLogic reportLogic;
+        public MainLogic(IOrderLogic orderLogic,ReportLogic reportLogic)
         {
             this.orderLogic = orderLogic;
+            this.reportLogic = reportLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -47,6 +50,38 @@ namespace ITShopBusinessLogic.BusinessLogic
                 TookDate = DateTime.Now,
                 OrderProducts = order.OrderProducts
             });
+        }
+
+        public void SendRequest(int requestId,string mail,bool exel,bool word)
+        {
+            if (exel)
+            {
+                reportLogic.RequestInExel(new ReportBindingModel()
+                {
+                    RequestId = requestId,
+                    FileName = "C:\\Windows\\Temp\\exel.xlsx",                    
+                });
+                MailLogic.MailSendAsync(new MailSendInfo() 
+                {
+                    FileName = "C:\\Windows\\Temp\\exel.xlsx",
+                    MailAddress = mail,
+                    Subject = "Запрос"
+                });
+            }
+            if (word)
+            {
+                reportLogic.RequestInWord(new ReportBindingModel()
+                {
+                    RequestId = requestId,
+                    FileName = "C:\\Windows\\Temp\\word.docx",
+                });
+                MailLogic.MailSendAsync(new MailSendInfo()
+                {
+                    FileName = "C:\\Windows\\Temp\\word.docx",
+                    MailAddress = mail,
+                    Subject = "Запрос"
+                });
+            }
         }
     }
 }

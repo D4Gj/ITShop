@@ -9,6 +9,7 @@ using ITShopBusinessLogic.HelperModels;
 using System.Net.Mail;
 using System.Net;
 using ITShopBusinessLogic.HelperModels.Pdf;
+using System;
 
 namespace ITShopBusinessLogic.BusinessLogic
 {
@@ -142,14 +143,33 @@ namespace ITShopBusinessLogic.BusinessLogic
         }
         public RequestViewModel GetRequest(ReportBindingModel model)
         {
-            return requestLogic.Read(new RequestBindingModel() { Id = model.RequestId }).First();
+            var request = requestLogic.Read(new RequestBindingModel() { Id = model.RequestId }).First();
+            Dictionary<int, (string, int, int)> requestComponents = new Dictionary<int, (string, int, int)>();
+            requestComponents = request.RequestComponents.ToDictionary(x=> x.Key,x=>(x.Value.Item1,x.Value.Item2,Convert.ToInt32(componentLogic.Read(new ComponentBindingModel() {Id = x.Key })[0].ComponentPrice)));
+            RequestViewModel temp= new RequestViewModel()
+            {
+                Id = request.Id,
+                RequestDate = request.RequestDate,
+                RequestName = request.RequestName,
+                RequestComponents = requestComponents,
+            };
+            return temp;
         }
         public void RequestInWord(ReportBindingModel model)
         {
-            SaveToWord.CreateDocRequestForMail(new WordInfoRequest
+            SaveToWord.CreateDocRequestForMail(new InfoRequest
             {
                 FileName = model.FileName,
                 Title = "Запрос №"+model.RequestId,
+                requestViewModel = GetRequest(model),
+            });
+        }
+        public void RequestInExel(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDocRequestForMail(new InfoRequest
+            {
+                FileName = model.FileName,
+                Title = "Запрос №" + model.RequestId,
                 requestViewModel = GetRequest(model),
             });
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ITShopBusinessLogic.HelperModels
 {
-    public class WordInfoRequest
+    public class InfoRequest
     {
         public string FileName { get; set; }
         public string Title { get; set; }

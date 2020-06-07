@@ -1,4 +1,5 @@
 ﻿using ITShopBusinessLogic.BindingModels;
+using ITShopBusinessLogic.BusinessLogic;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
 using System;
@@ -20,12 +21,15 @@ namespace ITShopWindowsApp.Request
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
         private readonly IRequestLogic logic;
+        private readonly MainLogic mainLogic;
         private int? id;
         private Dictionary<int, (string, int, int)> requestComponents;
-        public FormCreateRequest(IRequestLogic logic)
+        public FormCreateRequest(IRequestLogic logic,MainLogic mainLogic)
         {
+            
             InitializeComponent();
             this.logic = logic;
+            this.mainLogic = mainLogic;
             dataGridView.Columns.Add("Id", "Id");
             dataGridView.Columns.Add("ComponentName", "Компонент");
             dataGridView.Columns.Add("Count", "Заказано");
@@ -142,6 +146,12 @@ namespace ITShopWindowsApp.Request
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (radioButtonWord.Checked==false && radioButtonExel.Checked == false)
+            {
+                MessageBox.Show("Выберите формат письма", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+                return;
+            }
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
                 MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
@@ -161,8 +171,9 @@ namespace ITShopWindowsApp.Request
                     Id = id,
                     RequestName = textBoxName.Text,
                     RequestComponents = requestComponents,
-                    RequestDate = DateTime.Now
+                    RequestDate = DateTime.Now,
                 });
+                mainLogic.SendRequest(logic.Read(null).Where(x => x.RequestName == textBoxName.Text).FirstOrDefault().Id, textBoxMail.Text, radioButtonExel.Checked, radioButtonWord.Checked);
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
@@ -179,6 +190,16 @@ namespace ITShopWindowsApp.Request
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void radioButtonWord_Click(object sender, EventArgs e)
+        {
+            radioButtonExel.Checked = false;
+        }
+
+        private void radioButtonExel_Click(object sender, EventArgs e)
+        {
+            radioButtonWord.Checked = false;
         }
     }
 }
