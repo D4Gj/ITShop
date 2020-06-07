@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Unity;
 using ITShopWindowsApp.Request;
 using ITShopBusinessLogic.BindingModels;
+using ITShopWindowsApp.Report;
 
 namespace ITShopWindowsApp
 {
@@ -123,6 +124,12 @@ namespace ITShopWindowsApp
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void движениеКомпонентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportPdf>();
+            form.ShowDialog();
         }
     }
 }

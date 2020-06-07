@@ -12,5 +12,7 @@ namespace ITShopBusinessLogic.BindingModels
         public List<int> ProductsId { get; set; }
         public List<int> Orders { get; set; }
         public string Login { get; set; }
+        public DateTime? DateTo { get; set; }
+        public DateTime? DateFrom { get; set; }
     }
 }
