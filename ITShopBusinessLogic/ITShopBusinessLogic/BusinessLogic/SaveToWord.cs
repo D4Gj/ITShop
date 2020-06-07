@@ -28,11 +28,11 @@ namespace ITShopBusinessLogic.BusinessLogic
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var product in info.Orders)
+                foreach (var order in info.Orders)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<string> { product.ProductName, product.Count + ":", product.Price + ":", product.date +":"},
+                        Texts = new List<string> { order.OrderDate.ToString() },
                         TextProperties = new WordParagraphProperties
                         {
                             Bold = true,
@@ -40,6 +40,20 @@ namespace ITShopBusinessLogic.BusinessLogic
                             JustificationValues = JustificationValues.Both
                         }
                     }));
+                    foreach (var product in order.OrderProducts)
+                    {
+                        docBody.AppendChild(CreateParagraph(new WordParagraph
+                        {
+                            Texts = new List<string> { product.Key.ToString(), ":" + product.Value.Item1, ":" + product.Value.Item2, ":" + product.Value.Item3},
+                            TextProperties = new WordParagraphProperties
+                            {
+                                Bold = true,
+                                Size = "24",
+                                JustificationValues = JustificationValues.Both
+                            }
+                        }));
+                        
+                    }                    
                 }
                 docBody.AppendChild(CreateSectionProperties());
 
