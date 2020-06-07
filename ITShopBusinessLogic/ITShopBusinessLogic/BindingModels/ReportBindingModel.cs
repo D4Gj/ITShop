@@ -9,8 +9,9 @@ namespace ITShopBusinessLogic.BindingModels
     {
         public string FileName { get; set; }
         public int ClientId { get; set; }
+        public int RequestId { get; set; }
         public List<int> ProductsId { get; set; }
-        public DateTime? DateTo { get; set; }
+        public DateTime? DateTo { get; set; } 
         public DateTime? DateFrom { get; set; }
     }
 }

@@ -36,11 +36,12 @@
             this.изделияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.движениеКомпонентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonInfo = new System.Windows.Forms.Button();
             this.buttonFinalOrder = new System.Windows.Forms.Button();
-            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.движениеКомпонентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.запросВФорматеWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +114,22 @@
             this.запросыToolStripMenuItem.Text = "Запросы";
             this.запросыToolStripMenuItem.Click += new System.EventHandler(this.запросыToolStripMenuItem_Click);
             // 
+            // отчетыToolStripMenuItem
+            // 
+            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.движениеКомпонентовToolStripMenuItem,
+            this.запросВФорматеWordToolStripMenuItem});
+            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            // 
+            // движениеКомпонентовToolStripMenuItem
+            // 
+            this.движениеКомпонентовToolStripMenuItem.Name = "движениеКомпонентовToolStripMenuItem";
+            this.движениеКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.движениеКомпонентовToolStripMenuItem.Text = "Движение компонентов";
+            this.движениеКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.движениеКомпонентовToolStripMenuItem_Click);
+            // 
             // buttonUpd
             // 
             this.buttonUpd.Location = new System.Drawing.Point(595, 83);
@@ -143,20 +160,12 @@
             this.buttonFinalOrder.UseVisualStyleBackColor = true;
             this.buttonFinalOrder.Click += new System.EventHandler(this.buttonFinalOrder_Click);
             // 
-            // отчетыToolStripMenuItem
+            // запросВФорматеWordToolStripMenuItem
             // 
-            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.движениеКомпонентовToolStripMenuItem});
-            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
-            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.отчетыToolStripMenuItem.Text = "Отчеты";
-            // 
-            // движениеКомпонентовToolStripMenuItem
-            // 
-            this.движениеКомпонентовToolStripMenuItem.Name = "движениеКомпонентовToolStripMenuItem";
-            this.движениеКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.движениеКомпонентовToolStripMenuItem.Text = "Движение компонентов";
-            this.движениеКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.движениеКомпонентовToolStripMenuItem_Click);
+            this.запросВФорматеWordToolStripMenuItem.Name = "запросВФорматеWordToolStripMenuItem";
+            this.запросВФорматеWordToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.запросВФорматеWordToolStripMenuItem.Text = "Запрос в формате word";
+            this.запросВФорматеWordToolStripMenuItem.Click += new System.EventHandler(this.запросВФорматеWordToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -195,5 +204,6 @@
         private System.Windows.Forms.Button buttonFinalOrder;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem движениеКомпонентовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem запросВФорматеWordToolStripMenuItem;
     }
 }

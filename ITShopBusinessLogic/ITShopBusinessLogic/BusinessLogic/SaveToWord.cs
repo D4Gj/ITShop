@@ -46,6 +46,107 @@ namespace ITShopBusinessLogic.BusinessLogic
                 wordDocument.MainDocumentPart.Document.Save();
             }
         }
+        public static void CreateDocRequestForMail(WordInfoRequest info)
+        {
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                Body docBody = mainPart.Document.AppendChild(new Body());
+
+                docBody.AppendChild(CreateParagraph(new WordParagraph
+                {
+                    Texts = new List<string> { info.Title },
+                    TextProperties = new WordParagraphProperties
+                    {
+                        Bold = false,
+                        Size = "24",
+                        JustificationValues = JustificationValues.Center
+                    }
+                }));
+                docBody.AppendChild(CreateParagraph(new WordParagraph
+                {
+                    Texts = new List<string> { "Дата запроса"," : ", info.requestViewModel.RequestDate.ToString() },
+                    TextProperties = new WordParagraphProperties
+                    {
+                        Bold = false,
+                        Size = "24",
+                        JustificationValues = JustificationValues.Center
+                    }
+                }));
+                Table table = new Table();
+                TableProperties props = new TableProperties(
+                    new TableBorders(
+                        new TopBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 },
+                        new BottomBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 },
+                        new LeftBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 },
+                        new RightBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 },
+                        new InsideHorizontalBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 },
+                        new InsideVerticalBorder { Val = new EnumValue<BorderValues>(BorderValues.Single), Size = 5 }
+                ));
+                table.AppendChild(props);
+                var row = new TableRow();
+                var cell = new TableCell();
+                var textProperties = new WordParagraphProperties
+                {
+                    Bold = false,
+                    Size = "24",
+                    JustificationValues = JustificationValues.Both,
+                };
+                {
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> {"Артикул компонента"},
+                        TextProperties = textProperties
+                    }));
+                    row.AppendChild(cell);
+                    cell = new TableCell();
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> {"Название компонента"},
+                        TextProperties = textProperties
+                    }));
+                    row.AppendChild(cell);
+                    cell = new TableCell();
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> {"Количество" },
+                        TextProperties = textProperties
+                    }));
+                    row.AppendChild(cell);
+                    table.AppendChild(row);
+                }
+                foreach (var product in info.requestViewModel.RequestComponents)
+                {
+                    row = new TableRow();
+                    cell = new TableCell();
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> { product.Key.ToString()},
+                        TextProperties = textProperties    
+                    }));
+                    row.AppendChild(cell);
+                    cell = new TableCell();
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> { product.Value.Item1.ToString() },
+                        TextProperties = textProperties
+                    }));
+                    row.AppendChild(cell);
+                    cell = new TableCell();
+                    cell.Append(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> { product.Value.Item2.ToString() },
+                        TextProperties = textProperties
+                    }));
+                    row.AppendChild(cell);
+                    table.AppendChild(row);
+                }
+                docBody.AppendChild(table);
+                docBody.AppendChild(CreateSectionProperties());
+                wordDocument.MainDocumentPart.Document.Save();
+            }
+        }
         private static SectionProperties CreateSectionProperties()
         {
             SectionProperties properties = new SectionProperties();

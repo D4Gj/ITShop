@@ -19,11 +19,13 @@ namespace ITShopWindowsApp
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic)
+        private readonly ReportLogic reportLogic;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic,ReportLogic reportLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
+            this.reportLogic = reportLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -130,6 +132,23 @@ namespace ITShopWindowsApp
         {
             var form = Container.Resolve<FormReportPdf>();
             form.ShowDialog();
+        }
+
+        private void запросВФорматеWordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    reportLogic.RequestInWord(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName,
+                        RequestId = 9,
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
