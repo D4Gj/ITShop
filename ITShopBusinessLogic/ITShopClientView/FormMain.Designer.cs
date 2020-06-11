@@ -34,6 +34,7 @@
             this.создатьЗаказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.данныеОЗаказеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сообщенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -63,7 +64,8 @@
             this.создатьЗаказToolStripMenuItem,
             this.обновитьСписокToolStripMenuItem,
             this.изменитьДанныеToolStripMenuItem,
-            this.сообщенияToolStripMenuItem});
+            this.сообщенияToolStripMenuItem,
+            this.данныеОЗаказеToolStripMenuItem });
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
@@ -95,6 +97,13 @@
             this.сообщенияToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.сообщенияToolStripMenuItem.Text = "Сообщения";
             this.сообщенияToolStripMenuItem.Click += new System.EventHandler(this.сообщенияToolStripMenuItem_Click);
+            //
+            // данныеОЗаказеToolStripMenuItem
+            //
+            this.данныеОЗаказеToolStripMenuItem.Name = "данныеОЗаказеToolStripMenuItem";
+            this.данныеОЗаказеToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.данныеОЗаказеToolStripMenuItem.Text = "О выбранном заказе";
+            this.данныеОЗаказеToolStripMenuItem.Click += new System.EventHandler(this.ДанныеОЗаказеToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -114,7 +123,7 @@
 
         }
 
-        #endregion
+        #endregion       
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
@@ -122,5 +131,6 @@
         private System.Windows.Forms.ToolStripMenuItem обновитьСписокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьДанныеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сообщенияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem данныеОЗаказеToolStripMenuItem;
     }
 }

@@ -48,15 +48,15 @@ namespace ITShopBusinessLogic.BusinessLogic
                 Orders = GetProducts(model)
             });
         }
-        //public void ExcelProducts(ReportBindingModel model)
-        //{
-        //    SaveToExcel.CreateDoc(new ExcelInfo
-        //    {
-        //        FileName = model.FileName,
-        //        Title = "Товары",
-        //        Products = GetProducts(model)
-        //    });
-        //}
+        public void ExcelProducts(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDoc(new ExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Товары",
+                Orders = GetProducts(model)
+            });
+        }
         public void SendMessage(ReportBindingModel model)
         {
             MailAddress from = new MailAddress("labwork15kafis@gmail.com");
