@@ -89,11 +89,6 @@ namespace ITShopWindowsApp.Orders
                 MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (logicO.howMuchIsMissingComponents(orderProduct).Count>0)
-            {
-                MessageBox.Show("Нехватает компонентов для продуктов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             try
             {
                 logicM.CreateOrder(new CreateOrderBindingModel

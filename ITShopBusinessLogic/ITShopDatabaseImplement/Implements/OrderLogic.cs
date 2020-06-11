@@ -21,6 +21,10 @@ namespace ITShopDatabaseImplement.Implements
         }
         public void CreateOrUpdate(OrderBindingModel model)
         {
+            if (HowMuchIsMissingComponents(model.OrderProducts).Count > 0)
+            {
+                throw new Exception("Нехватает компонентов для заказа");
+            }
             using (var context = new ITShopDatabase())
             {
                 using (var transaction = context.Database.BeginTransaction())
@@ -143,7 +147,7 @@ namespace ITShopDatabaseImplement.Implements
             }
         }
 
-        Dictionary<int, int> IOrderLogic.howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts)
+        public Dictionary<int, int> HowMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts)
         {
             Dictionary<int, int> needComponent = new Dictionary<int, int>();
             foreach (var ProductComponents in OrderProducts)
