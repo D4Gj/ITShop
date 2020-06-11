@@ -26,7 +26,7 @@ namespace ITShopClientView
                 if (order.TookDate != null)
                 {
                     ids.Add(order.Id);
-                }
+                }                
             }
             APIClient.PostRequest($"api/main/OrdersDone", new ReportBindingModel
             {

@@ -111,7 +111,7 @@
             //
             this.отчётПоЗаказамToolStripMenuItem.Name = "отчётПоЗаказамToolStripMenuItem";
             this.отчётПоЗаказамToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.отчётПоЗаказамToolStripMenuItem.Text = "О выбранном заказе";
+            this.отчётПоЗаказамToolStripMenuItem.Text = "Отчёты по заказам";
             this.отчётПоЗаказамToolStripMenuItem.Click += new System.EventHandler(this.отчётПоЗаказамToolStripMenuItem_Click);
             // 
             // FormMain

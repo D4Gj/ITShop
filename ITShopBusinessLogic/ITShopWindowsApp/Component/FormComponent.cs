@@ -61,7 +61,7 @@ namespace ITShopWindowsApp.Component
                 {
                     Id = id,
                     ComponentName = textBoxName.Text,
-                    ComponentPrice = Convert.ToInt32(textBoxPrice.Text)
+                    ComponentPrice = Convert.ToDecimal(textBoxPrice.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);

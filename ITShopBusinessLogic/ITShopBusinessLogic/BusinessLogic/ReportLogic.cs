@@ -95,15 +95,18 @@ namespace ITShopBusinessLogic.BusinessLogic
                     {
                         foreach (var component in products.Where(x => x.Id == orderProduct.Key).First().ProductCompunents)
                         {
-                            var record = new ReportOrderViewModel
+                            if (order.TookDate.HasValue)
                             {
-                                Date = order.TookDate.Value,
-                                IdComponents = component.Key,
-                                NameComponent = component.Value.Item1,
-                                IdOperation = order.Id.Value,
-                                Count = orderProduct.Value.Item2,
-                            };
-                            reportMoveViewModels.Add(record);
+                                var record = new ReportOrderViewModel
+                                {
+                                    Date = order.TookDate.Value,
+                                    IdComponents = component.Key,
+                                    NameComponent = component.Value.Item1,
+                                    IdOperation = order.Id.Value,
+                                    Count = orderProduct.Value.Item2,
+                                };
+                                reportMoveViewModels.Add(record);
+                            }
                         }
                     }
                 }
