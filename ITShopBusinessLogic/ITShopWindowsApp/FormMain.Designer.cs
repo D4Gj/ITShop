@@ -53,7 +53,7 @@
             this.buttonCreateOrder.TabIndex = 10;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
-            this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
+            this.buttonCreateOrder.Click += new System.EventHandler(this.ButtonCreateOrder_Click);
             // 
             // dataGridView
             // 
@@ -90,28 +90,28 @@
             this.КомпонентыToolStripMenuItem.Name = "КомпонентыToolStripMenuItem";
             this.КомпонентыToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.КомпонентыToolStripMenuItem.Text = "Компоненты";
-            this.КомпонентыToolStripMenuItem.Click += new System.EventHandler(this.КомпонентыToolStripMenuItem_Click);
+            this.КомпонентыToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
             // изделияToolStripMenuItem
             // 
             this.изделияToolStripMenuItem.Name = "изделияToolStripMenuItem";
             this.изделияToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.изделияToolStripMenuItem.Text = "Изделия";
-            this.изделияToolStripMenuItem.Click += new System.EventHandler(this.изделияToolStripMenuItem_Click);
+            this.изделияToolStripMenuItem.Click += new System.EventHandler(this.ProductsToolStripMenuItem_Click);
             // 
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
             this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
-            this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.клиентыToolStripMenuItem_Click);
+            this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.ClientsToolStripMenuItem_Click);
             // 
             // запросыToolStripMenuItem
             // 
             this.запросыToolStripMenuItem.Name = "запросыToolStripMenuItem";
             this.запросыToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.запросыToolStripMenuItem.Text = "Запросы";
-            this.запросыToolStripMenuItem.Click += new System.EventHandler(this.запросыToolStripMenuItem_Click);
+            this.запросыToolStripMenuItem.Click += new System.EventHandler(this.RequestToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
@@ -126,7 +126,7 @@
             this.движениеКомпонентовToolStripMenuItem.Name = "движениеКомпонентовToolStripMenuItem";
             this.движениеКомпонентовToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.движениеКомпонентовToolStripMenuItem.Text = "Движение компонентов";
-            this.движениеКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.движениеКомпонентовToolStripMenuItem_Click);
+            this.движениеКомпонентовToolStripMenuItem.Click += new System.EventHandler(this.MoveComponentsToolStripMenuItem_Click);
             // 
             // buttonUpd
             // 
@@ -136,7 +136,7 @@
             this.buttonUpd.TabIndex = 11;
             this.buttonUpd.Text = "Обновить";
             this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
+            this.buttonUpd.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
             // buttonInfo
             // 
@@ -146,7 +146,7 @@
             this.buttonInfo.TabIndex = 12;
             this.buttonInfo.Text = "Подробней о заказе.";
             this.buttonInfo.UseVisualStyleBackColor = true;
-            this.buttonInfo.Click += new System.EventHandler(this.buttonInfo_Click);
+            this.buttonInfo.Click += new System.EventHandler(this.ButtonInfo_Click);
             // 
             // buttonFinalOrder
             // 
@@ -156,7 +156,7 @@
             this.buttonFinalOrder.TabIndex = 13;
             this.buttonFinalOrder.Text = "Заказ оплачен";
             this.buttonFinalOrder.UseVisualStyleBackColor = true;
-            this.buttonFinalOrder.Click += new System.EventHandler(this.buttonFinalOrder_Click);
+            this.buttonFinalOrder.Click += new System.EventHandler(this.ButtonFinalOrder_Click);
             // 
             // FormMain
             // 

@@ -19,13 +19,11 @@ namespace ITShopWindowsApp
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
-        private readonly ReportLogic reportLogic;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic,ReportLogic reportLogic)
+        public FormMain(MainLogic logic, IOrderLogic orderLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
-            this.reportLogic = reportLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -54,43 +52,43 @@ namespace ITShopWindowsApp
             }
         }
 
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
+        private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog(); 
             LoadData();
         }
 
-        private void КомпонентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
 
-        private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ProductsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormProducts>();
             form.ShowDialog();
         }
 
-        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormClient>();
             form.ShowDialog();
         }
 
-        private void buttonUpd_Click(object sender, EventArgs e)
+        private void ButtonUpd_Click(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        private void запросыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RequestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormRequests>();
             form.ShowDialog();
         }
 
-        private void buttonInfo_Click(object sender, EventArgs e)
+        private void ButtonInfo_Click(object sender, EventArgs e)
         {
             try
             {
@@ -111,7 +109,7 @@ namespace ITShopWindowsApp
             }
         }
 
-        private void buttonFinalOrder_Click(object sender, EventArgs e)
+        private void ButtonFinalOrder_Click(object sender, EventArgs e)
         {
             try
             {
@@ -128,44 +126,10 @@ namespace ITShopWindowsApp
             }
         }
 
-        private void движениеКомпонентовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MoveComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportPdf>();
             form.ShowDialog();
-        }
-
-        private void запросВФорматеWordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    reportLogic.RequestInWord(new ReportBindingModel
-                    {
-                        FileName = dialog.FileName,
-                        RequestId = 24,
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void запросВФорматеExelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    reportLogic.RequestInExel(new ReportBindingModel
-                    {
-                        FileName = dialog.FileName,
-                        RequestId = 9,
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
-                }
-            }
         }
     }
 }

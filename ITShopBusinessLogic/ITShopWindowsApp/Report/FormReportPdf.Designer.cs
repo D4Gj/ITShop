@@ -35,6 +35,9 @@
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCreatePdfFile = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.buttonSendMail = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +80,7 @@
             this.buttonCreate.TabIndex = 4;
             this.buttonCreate.Text = "Сформировать";
             this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
+            this.buttonCreate.Click += new System.EventHandler(this.ButtonCreate_Click);
             // 
             // buttonCreatePdfFile
             // 
@@ -87,7 +90,7 @@
             this.buttonCreatePdfFile.TabIndex = 5;
             this.buttonCreatePdfFile.Text = "Сохранить в PDF";
             this.buttonCreatePdfFile.UseVisualStyleBackColor = true;
-            this.buttonCreatePdfFile.Click += new System.EventHandler(this.buttonCreatePdfFile_Click);
+            this.buttonCreatePdfFile.Click += new System.EventHandler(this.ButtonCreatePdfFile_Click);
             // 
             // reportViewer
             // 
@@ -95,14 +98,43 @@
             this.reportViewer.Location = new System.Drawing.Point(1, 29);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(800, 422);
+            this.reportViewer.Size = new System.Drawing.Size(871, 422);
             this.reportViewer.TabIndex = 6;
+            // 
+            // textBoxMail
+            // 
+            this.textBoxMail.Location = new System.Drawing.Point(878, 55);
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.Size = new System.Drawing.Size(178, 20);
+            this.textBoxMail.TabIndex = 7;
+            // 
+            // buttonSendMail
+            // 
+            this.buttonSendMail.Location = new System.Drawing.Point(878, 81);
+            this.buttonSendMail.Name = "buttonSendMail";
+            this.buttonSendMail.Size = new System.Drawing.Size(75, 23);
+            this.buttonSendMail.TabIndex = 8;
+            this.buttonSendMail.Text = "Отправить на поту";
+            this.buttonSendMail.UseVisualStyleBackColor = true;
+            this.buttonSendMail.Click += new System.EventHandler(this.ButtonSendMail_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(878, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Почта";
             // 
             // FormReportPdf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1059, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.buttonSendMail);
+            this.Controls.Add(this.textBoxMail);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.buttonCreatePdfFile);
             this.Controls.Add(this.buttonCreate);
@@ -111,7 +143,7 @@
             this.Controls.Add(this.dateTimePickerFrom);
             this.Controls.Add(this.label1);
             this.Name = "FormReportPdf";
-            this.Text = "FormReportPdf";
+            this.Text = "Отчет о движении товаров";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +158,8 @@
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonCreatePdfFile;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.TextBox textBoxMail;
+        private System.Windows.Forms.Button buttonSendMail;
+        private System.Windows.Forms.Label label3;
     }
 }

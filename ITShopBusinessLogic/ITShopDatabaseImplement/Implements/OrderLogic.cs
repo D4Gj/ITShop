@@ -15,11 +15,9 @@ namespace ITShopDatabaseImplement.Implements
     public class OrderLogic : IOrderLogic
     {
         private readonly IProductLogic productLogic;
-        private readonly IRequestLogic requestLogic;
-        public OrderLogic(IProductLogic productLogic,IRequestLogic requestLogic)
+        public OrderLogic(IProductLogic productLogic)
         {
             this.productLogic = productLogic;
-            this.requestLogic = requestLogic;
         }
         public void CreateOrUpdate(OrderBindingModel model)
         {
@@ -162,8 +160,7 @@ namespace ITShopDatabaseImplement.Implements
              {
                 if (dictionari1.ContainsKey(element.Key))
                 {
-                    int temp = 0;
-                    dictionari1.TryGetValue(element.Key,out temp);
+                    dictionari1.TryGetValue(element.Key, out int temp);
                     temp += element.Value;
                     dictionari1.Remove(element.Key);
                     dictionari1.Add(element.Key, temp);

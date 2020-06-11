@@ -85,7 +85,7 @@
             this.buttonCreateOrder.TabIndex = 8;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
-            this.buttonCreateOrder.Click += new System.EventHandler(this.buttonCreateOrder_Click);
+            this.buttonCreateOrder.Click += new System.EventHandler(this.ButtonCreateOrder_Click);
             // 
             // buttonCancel
             // 
@@ -95,7 +95,7 @@
             this.buttonCancel.TabIndex = 9;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // groupBox
             // 
@@ -118,7 +118,7 @@
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // buttonUpd
             // 
@@ -128,7 +128,7 @@
             this.buttonUpd.TabIndex = 2;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
+            this.buttonUpd.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
             // buttonAdd
             // 
@@ -138,7 +138,7 @@
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // dataGridView
             // 
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 252);
+            this.ClientSize = new System.Drawing.Size(676, 198);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCreateOrder);

@@ -48,7 +48,7 @@ namespace ITShopWindowsApp.Request
             }
 
         }
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateRequest>();
             if (form.ShowDialog() == DialogResult.OK)
@@ -56,7 +56,7 @@ namespace ITShopWindowsApp.Request
                 LoadData();
             }
         }
-        private void buttonUpt_Click(object sender, EventArgs e)
+        private void ButtonUpt_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -69,7 +69,7 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonDel_Click(object sender, EventArgs e)
+        private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -92,12 +92,12 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        private void buttonGetInfo_Click(object sender, EventArgs e)
+        private void ButtonGetInfo_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {

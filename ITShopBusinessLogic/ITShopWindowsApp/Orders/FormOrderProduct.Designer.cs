@@ -64,7 +64,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(121, 20);
             this.textBoxCount.TabIndex = 21;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
+            this.textBoxCount.TextChanged += new System.EventHandler(this.TextBoxCount_TextChanged);
             // 
             // comboBoxProduct
             // 
@@ -73,7 +73,7 @@
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(121, 21);
             this.comboBoxProduct.TabIndex = 20;
-            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.ComboBoxProduct_SelectedIndexChanged);
             // 
             // label2
             // 

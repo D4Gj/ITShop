@@ -50,6 +50,7 @@
             this.buttonDel.TabIndex = 11;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // buttonRef
             // 
@@ -69,7 +70,7 @@
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonRef);
             this.Name = "FormClient";
-            this.Text = "FormClient";
+            this.Text = "Клиенты";
             this.Load += new System.EventHandler(this.FormClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
