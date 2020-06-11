@@ -7,12 +7,46 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <COMReference Include="FileViewLib.dll">
+      <Guid>be79c475-d632-4a57-91b3-da044fa27cda</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="AcroPDFLib.dll">
+      <Guid>05bfd3f1-6319-4f30-b752-c7a22889bcc4</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+    <COMReference Include="AcroBrokerLib.dll">
+      <Guid>41738eea-442f-477f-92cf-2889bd6cd7e7</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.1" />
     <PackageReference Include="Mail.dll" Version="3.0.20106.1313" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ITShopBusinessLogic\ITShopBusinessLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AxInterop.AcroPDFLib">
+      <HintPath>..\ITShopWindowsApp\obj\Debug\AxInterop.AcroPDFLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

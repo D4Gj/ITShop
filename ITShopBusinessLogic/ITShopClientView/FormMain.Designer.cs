@@ -36,6 +36,7 @@
             this.изменитьДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.данныеОЗаказеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сообщенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчётПоЗаказамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +66,8 @@
             this.обновитьСписокToolStripMenuItem,
             this.изменитьДанныеToolStripMenuItem,
             this.сообщенияToolStripMenuItem,
-            this.данныеОЗаказеToolStripMenuItem });
+            this.данныеОЗаказеToolStripMenuItem,
+            this.отчётПоЗаказамToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
@@ -104,6 +106,13 @@
             this.данныеОЗаказеToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.данныеОЗаказеToolStripMenuItem.Text = "О выбранном заказе";
             this.данныеОЗаказеToolStripMenuItem.Click += new System.EventHandler(this.ДанныеОЗаказеToolStripMenuItem_Click);
+            //
+            // отчётПоЗаказамToolStripMenuItem
+            //
+            this.отчётПоЗаказамToolStripMenuItem.Name = "отчётПоЗаказамToolStripMenuItem";
+            this.отчётПоЗаказамToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.отчётПоЗаказамToolStripMenuItem.Text = "О выбранном заказе";
+            this.отчётПоЗаказамToolStripMenuItem.Click += new System.EventHandler(this.отчётПоЗаказамToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -132,5 +141,6 @@
         private System.Windows.Forms.ToolStripMenuItem изменитьДанныеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сообщенияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem данныеОЗаказеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem отчётПоЗаказамToolStripMenuItem;
     }
 }

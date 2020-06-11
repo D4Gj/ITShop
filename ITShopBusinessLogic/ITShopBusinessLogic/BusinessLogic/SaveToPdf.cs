@@ -9,7 +9,7 @@ namespace ITShopBusinessLogic.BusinessLogic
 {
     public class SaveToPdf
     {
-        public static void CreateDoc(PdfInfo info)
+        public static void CreateDocAdm(PdfInfo info)
         {
             Document document = new Document();
             DefineStyles(document);
@@ -53,6 +53,58 @@ namespace ITShopBusinessLogic.BusinessLogic
                 });
             }
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true,PdfSharp.Pdf.PdfFontEmbedding.Always)
+            {
+                Document = document
+            };
+            renderer.RenderDocument();
+            renderer.PdfDocument.Save(info.FileName);
+        }
+        public static void CreateDocClient(PdfInfo info)
+        {
+            Document document = new Document();
+            DefineStyles(document);
+            Section section = document.AddSection();
+            Paragraph paragraph = section.AddParagraph(info.Title);
+            paragraph.Format.SpaceAfter = "1cm";
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            paragraph.Style = "NormalTitle";            
+            paragraph.Format.SpaceAfter = "1cm";
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            paragraph.Style = "Normal";
+            var table = document.LastSection.AddTable();
+            List<string> columns = new List<string> { "3cm", "3cm", "3cm","3cm","3cm"};
+            foreach (var elem in columns)
+            {
+                table.AddColumn(elem);
+            }
+            CreateRow(new PdfRowParameters
+            {
+                Table = table,
+                Texts = new List<string> {"Id заказа"," Id продукта", "Продукт", "Количество", "Дата" },
+                Style = "NormalTitle",
+                ParagraphAlignment = ParagraphAlignment.Center
+            });
+            if (info.Orders != null)
+            {
+                foreach (var order in info.Orders)
+                {
+
+                    CreateRow(new PdfRowParameters
+                    {
+                        Table = table,
+                        Texts = new List<string> {
+                        order.IdOperation.ToString(),
+                        order.IdComponents.ToString(),
+                        order.NameComponent,
+                        order.Count.ToString(),
+                        order.Date.ToString()
+                    },
+                        Style = "Normal",
+                        ParagraphAlignment = ParagraphAlignment.Left
+                    });
+                }
+            }
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
             {
                 Document = document
             };

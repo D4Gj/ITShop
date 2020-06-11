@@ -12,5 +12,6 @@ namespace ITShopBusinessLogic.HelperModels.Pdf
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
         public List<ReportMoveViewModel> Opetarions { get; set; }
+        public List<ReportOrderViewModel> Orders { get; set; }
     }
 }

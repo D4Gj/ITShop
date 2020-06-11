@@ -36,9 +36,8 @@ namespace ITShopClientView
 
         private void UpdateDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // var form = new FormUpdateData();
-
-//            form.ShowDialog();
+            var form = new FormUpdateData();
+            form.ShowDialog();
         }
 
         private void CreateOrderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,6 +57,14 @@ namespace ITShopClientView
         private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormReports();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadList();
+            }
+        }
+        private void отчётПоЗаказамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormReportOrders();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadList();

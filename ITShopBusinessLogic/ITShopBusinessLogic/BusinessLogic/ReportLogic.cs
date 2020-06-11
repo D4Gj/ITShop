@@ -19,7 +19,7 @@ namespace ITShopBusinessLogic.BusinessLogic
         private readonly IRequestLogic requestLogic;
         private readonly IOrderLogic orderLogic;
         private readonly IComponentLogic componentLogic;
-        public ReportLogic(IProductLogic productLogic, IRequestLogic requestLogic, IOrderLogic orderLogic,IComponentLogic componentLogic)
+        public ReportLogic(IProductLogic productLogic, IRequestLogic requestLogic, IOrderLogic orderLogic, IComponentLogic componentLogic)
         {
             this.componentLogic = componentLogic;
             this.productLogic = productLogic;
@@ -58,6 +58,15 @@ namespace ITShopBusinessLogic.BusinessLogic
                 Orders = GetProducts(model)
             });
         }
+        public void PdfOrders(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDocClient(new PdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Заказы",
+                Orders = getOrders(model)
+            });
+        }
         public void SendMessage(ReportBindingModel model)
         {
             MailAddress from = new MailAddress("labwork15kafis@gmail.com");
@@ -69,7 +78,38 @@ namespace ITShopBusinessLogic.BusinessLogic
             smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
             smtp.EnableSsl = true;
             smtp.Send(m);
-		}
+        }
+
+        public List<ReportOrderViewModel> getOrders(ReportBindingModel model)
+        {
+            var reportMoveViewModels = new List<ReportOrderViewModel>();
+            {
+                var orders = orderLogic.Read(new OrderBindingModel()
+                {
+                    ClientId = model.ClientId
+                });
+                var products = productLogic.Read(null);
+                foreach (var order in orders)
+                {
+                    foreach (var orderProduct in order.OrderProducts)
+                    {
+                        foreach (var component in products.Where(x => x.Id == orderProduct.Key).First().ProductCompunents)
+                        {
+                            var record = new ReportOrderViewModel
+                            {
+                                Date = order.TookDate.Value,
+                                IdComponents = component.Key,
+                                NameComponent = component.Value.Item1,
+                                IdOperation = order.Id.Value,
+                                Count = orderProduct.Value.Item2,
+                            };
+                            reportMoveViewModels.Add(record);
+                        }
+                    }
+                }
+            }
+            return reportMoveViewModels.ToList();
+        }
 
         public List<ReportMoveViewModel> getOperations(ReportBindingModel model)
         {
@@ -79,25 +119,25 @@ namespace ITShopBusinessLogic.BusinessLogic
                 var requests = requestLogic.Read(new RequestBindingModel() { DateFrom = model.DateFrom, DateTo = model.DateTo });
                 var products = productLogic.Read(null);
 
-                foreach(var order in orders)
+                foreach (var order in orders)
                 {
-                    foreach(var orderProduct in order.OrderProducts)
+                    foreach (var orderProduct in order.OrderProducts)
                     {
-                        foreach(var component in products.Where(x => x.Id == orderProduct.Key).First().ProductCompunents)
-                        reportMoveViewModels.Add(new ReportMoveViewModel()
-                        {
-                            Date = order.TookDate.Value,
-                            IdComponents = component.Key,
-                            NameComponent = component.Value.Item1,
-                            IdOperation = order.Id.Value,
-                            Count = orderProduct.Value.Item2*component.Value.Item2,
-                            TypeMove = "Заказ",
-                        });
+                        foreach (var component in products.Where(x => x.Id == orderProduct.Key).First().ProductCompunents)
+                            reportMoveViewModels.Add(new ReportMoveViewModel()
+                            {
+                                Date = order.TookDate.Value,
+                                IdComponents = component.Key,
+                                NameComponent = component.Value.Item1,
+                                IdOperation = order.Id.Value,
+                                Count = orderProduct.Value.Item2 * component.Value.Item2,
+                                TypeMove = "Заказ",
+                            });
                     }
                 }
-                foreach(var request in requests)
+                foreach (var request in requests)
                 {
-                    foreach(var component in request.RequestComponents)
+                    foreach (var component in request.RequestComponents)
                     {
                         reportMoveViewModels.Add(new ReportMoveViewModel()
                         {
@@ -111,11 +151,11 @@ namespace ITShopBusinessLogic.BusinessLogic
                     }
                 }
             }
-            return reportMoveViewModels.OrderBy(x=> x.Date).ToList();
+            return reportMoveViewModels.OrderBy(x => x.Date).ToList();
         }
         public void SaveOperationsToPdfFile(ReportBindingModel model)
         {
-            SaveToPdf.CreateDoc(new PdfInfo()
+            SaveToPdf.CreateDocAdm(new PdfInfo()
             {
                 FileName = model.FileName,
                 Title = "Движение компронентов",
@@ -128,8 +168,8 @@ namespace ITShopBusinessLogic.BusinessLogic
         {
             var request = requestLogic.Read(new RequestBindingModel() { Id = model.RequestId }).First();
             Dictionary<int, (string, int, int)> requestComponents = new Dictionary<int, (string, int, int)>();
-            requestComponents = request.RequestComponents.ToDictionary(x=> x.Key,x=>(x.Value.Item1,x.Value.Item2,Convert.ToInt32(componentLogic.Read(new ComponentBindingModel() {Id = x.Key })[0].ComponentPrice)));
-            RequestViewModel temp= new RequestViewModel()
+            requestComponents = request.RequestComponents.ToDictionary(x => x.Key, x => (x.Value.Item1, x.Value.Item2, Convert.ToInt32(componentLogic.Read(new ComponentBindingModel() { Id = x.Key })[0].ComponentPrice)));
+            RequestViewModel temp = new RequestViewModel()
             {
                 Id = request.Id,
                 RequestDate = request.RequestDate,
@@ -143,7 +183,7 @@ namespace ITShopBusinessLogic.BusinessLogic
             SaveToWord.CreateDocRequestForMail(new InfoRequest
             {
                 FileName = model.FileName,
-                Title = "Запрос №"+model.RequestId,
+                Title = "Запрос №" + model.RequestId,
                 requestViewModel = GetRequest(model),
             });
         }

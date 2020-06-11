@@ -37,7 +37,7 @@ namespace ITShopDatabaseImplement.Implements
                             if (elem == null)
                             {
                                 throw new Exception("Элемент не найден");
-                            }
+                            }                            
                         }
                         else
                         {
@@ -145,7 +145,7 @@ namespace ITShopDatabaseImplement.Implements
             }
         }
 
-        Dictionary<int, int> IOrderLogic.howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts)
+        public Dictionary<int, int> howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts)
         {
             Dictionary<int, int> needComponent = new Dictionary<int, int>();
             foreach (var ProductComponents in OrderProducts)

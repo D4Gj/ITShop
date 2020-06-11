@@ -15,7 +15,7 @@ namespace ITShopClientView
 {
     public partial class FormReports : Form
     {
-        private List<int> ids = new List<int>();
+        private List<int?> ids = new List<int?>();
         private string str = "";
         private readonly string pathDocx = "D:\\Products.docx";
         private readonly string pathExcel = "D:\\Products.xlsx";
