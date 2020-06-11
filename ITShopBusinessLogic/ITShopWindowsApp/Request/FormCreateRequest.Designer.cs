@@ -38,13 +38,19 @@
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonExel = new System.Windows.Forms.RadioButton();
+            this.radioButtonWord = new System.Windows.Forms.RadioButton();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(411, 318);
+            this.buttonCancel.Location = new System.Drawing.Point(249, 273);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(68, 23);
             this.buttonCancel.TabIndex = 20;
@@ -54,7 +60,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(330, 318);
+            this.buttonSave.Location = new System.Drawing.Point(175, 273);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(68, 23);
             this.buttonSave.TabIndex = 19;
@@ -85,9 +91,9 @@
             this.groupBox.Controls.Add(this.buttonUpd);
             this.groupBox.Controls.Add(this.buttonAdd);
             this.groupBox.Controls.Add(this.dataGridView);
-            this.groupBox.Location = new System.Drawing.Point(13, 30);
+            this.groupBox.Location = new System.Drawing.Point(13, 58);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(470, 282);
+            this.groupBox.Size = new System.Drawing.Size(470, 199);
             this.groupBox.TabIndex = 14;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Компоненты";
@@ -137,24 +143,80 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(6, 19);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(373, 257);
+            this.dataGridView.Size = new System.Drawing.Size(373, 171);
             this.dataGridView.TabIndex = 0;
             // 
-            // FormRequest
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButtonExel);
+            this.groupBox1.Controls.Add(this.radioButtonWord);
+            this.groupBox1.Location = new System.Drawing.Point(14, 257);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(155, 59);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "В каком формате файл";
+            // 
+            // radioButtonExel
+            // 
+            this.radioButtonExel.AutoSize = true;
+            this.radioButtonExel.Location = new System.Drawing.Point(63, 36);
+            this.radioButtonExel.Name = "radioButtonExel";
+            this.radioButtonExel.Size = new System.Drawing.Size(45, 17);
+            this.radioButtonExel.TabIndex = 1;
+            this.radioButtonExel.TabStop = true;
+            this.radioButtonExel.Text = "Exel";
+            this.radioButtonExel.UseVisualStyleBackColor = true;
+            this.radioButtonExel.Click += new System.EventHandler(this.radioButtonExel_Click);
+            // 
+            // radioButtonWord
+            // 
+            this.radioButtonWord.AutoSize = true;
+            this.radioButtonWord.Location = new System.Drawing.Point(6, 36);
+            this.radioButtonWord.Name = "radioButtonWord";
+            this.radioButtonWord.Size = new System.Drawing.Size(51, 17);
+            this.radioButtonWord.TabIndex = 0;
+            this.radioButtonWord.TabStop = true;
+            this.radioButtonWord.Text = "Word";
+            this.radioButtonWord.UseVisualStyleBackColor = true;
+            this.radioButtonWord.Click += new System.EventHandler(this.radioButtonWord_Click);
+            // 
+            // textBox1
+            // 
+            this.textBoxMail.Location = new System.Drawing.Point(75, 32);
+            this.textBoxMail.Name = "textBox1";
+            this.textBoxMail.Size = new System.Drawing.Size(273, 20);
+            this.textBoxMail.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Почта";
+            // 
+            // FormCreateRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 348);
+            this.ClientSize = new System.Drawing.Size(490, 429);
+            this.Controls.Add(this.textBoxMail);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox);
-            this.Name = "FormRequest";
+            this.Name = "FormCreateRequest";
             this.Text = "Запрос";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +234,10 @@
         private System.Windows.Forms.Button buttonUpd;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonExel;
+        private System.Windows.Forms.RadioButton radioButtonWord;
+        private System.Windows.Forms.TextBox textBoxMail;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -13,11 +13,12 @@ namespace ITShopWindowsApp
 {
     static class Program
     {
-        private static string mailForRequest;
+        public static string mailForRequest;
         [STAThread]
         static void Main()
         {
             var container = BuildUnityContainer();
+            mailForRequest = ConfigurationManager.AppSettings["MailForRequest"];
             MailLogic.MailConfig(new MailConfig
             {
                 SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"],
@@ -25,7 +26,6 @@ namespace ITShopWindowsApp
                 MailLogin = ConfigurationManager.AppSettings["MailLogin"],
                 MailPassword = ConfigurationManager.AppSettings["MailPassword"],
             });
-            mailForRequest = ConfigurationManager.AppSettings["MailForRequest"];
             var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new MailCheckInfo
             {
                 PopHost = ConfigurationManager.AppSettings["PopHost"],

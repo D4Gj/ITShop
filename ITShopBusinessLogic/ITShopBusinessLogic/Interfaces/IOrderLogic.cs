@@ -11,6 +11,6 @@ namespace ITShopBusinessLogic.Interfaces
         List<OrderViewModel> Read(OrderBindingModel model);
         void CreateOrUpdate(OrderBindingModel model);
         void Delete(OrderBindingModel model);
-
+        Dictionary<int, int> howMuchIsMissingComponents(Dictionary<int, (string, int, decimal)> OrderProducts);
     }
 }
