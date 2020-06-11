@@ -41,8 +41,6 @@
             this.buttonUpd = new System.Windows.Forms.Button();
             this.buttonInfo = new System.Windows.Forms.Button();
             this.buttonFinalOrder = new System.Windows.Forms.Button();
-            this.запросВФорматеWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.запросВФорматеExelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -118,9 +116,7 @@
             // отчетыToolStripMenuItem
             // 
             this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.движениеКомпонентовToolStripMenuItem,
-            this.запросВФорматеWordToolStripMenuItem,
-            this.запросВФорматеExelToolStripMenuItem});
+            this.движениеКомпонентовToolStripMenuItem});
             this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
             this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.отчетыToolStripMenuItem.Text = "Отчеты";
@@ -162,20 +158,6 @@
             this.buttonFinalOrder.UseVisualStyleBackColor = true;
             this.buttonFinalOrder.Click += new System.EventHandler(this.buttonFinalOrder_Click);
             // 
-            // запросВФорматеWordToolStripMenuItem
-            // 
-            this.запросВФорматеWordToolStripMenuItem.Name = "запросВФорматеWordToolStripMenuItem";
-            this.запросВФорматеWordToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.запросВФорматеWordToolStripMenuItem.Text = "Запрос в формате word";
-            this.запросВФорматеWordToolStripMenuItem.Click += new System.EventHandler(this.запросВФорматеWordToolStripMenuItem_Click);
-            // 
-            // запросВФорматеExelToolStripMenuItem
-            // 
-            this.запросВФорматеExelToolStripMenuItem.Name = "запросВФорматеExelToolStripMenuItem";
-            this.запросВФорматеExelToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.запросВФорматеExelToolStripMenuItem.Text = "Запрос в формате exel";
-            this.запросВФорматеExelToolStripMenuItem.Click += new System.EventHandler(this.запросВФорматеExelToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,7 +195,5 @@
         private System.Windows.Forms.Button buttonFinalOrder;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem движениеКомпонентовToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem запросВФорматеWordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem запросВФорматеExelToolStripMenuItem;
     }
 }
