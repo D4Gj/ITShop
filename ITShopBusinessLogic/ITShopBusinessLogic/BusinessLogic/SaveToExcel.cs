@@ -290,13 +290,6 @@ namespace ITShopBusinessLogic.BusinessLogic
                 List<DateTime> dates = new List<DateTime>();
                 foreach (var order in info.Orders)
                 {
-                    if (!dates.Contains(order.DateCreate.Date))
-                    {
-                        dates.Add(order.DateCreate.Date);
-                    }
-                }
-                foreach (var date in dates)
-                {
                     decimal GenSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
@@ -304,11 +297,11 @@ namespace ITShopBusinessLogic.BusinessLogic
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = date.Date.ToShortDateString(),
+                        Text = order.OrderDate.ToString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
+                    foreach (var product in order.OrderProducts)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
@@ -316,7 +309,7 @@ namespace ITShopBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "B",
                             RowIndex = rowIndex,
-                            Text = order.ProductName,
+                            Text = product.Value.Item1,
                             StyleIndex = 1U
                         });
                         InsertCellInWorksheet(new ExcelCellParameters
@@ -325,22 +318,32 @@ namespace ITShopBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = order.Sum.ToString(),
+                            Text = product.Value.Item2.ToString(),
                             StyleIndex = 1U
                         });
-                        GenSum += order.Sum;
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "D",
+                            RowIndex = rowIndex,
+                            Text = product.Value.Item3.ToString(),
+                            StyleIndex = 1U
+                        });
+                        GenSum = order.Sum;
                         rowIndex++;
                     }
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
                         ShareStringPart = shareStringPart,
-                        ColumnName = "C",
+                        ColumnName = "D",
                         RowIndex = rowIndex,
                         Text = GenSum.ToString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
+
                 }
                 workbookpart.Workbook.Save();
             }

@@ -74,7 +74,7 @@
             // 
             // buttonOkExcel
             // 
-            this.buttonOkExcel.Location = new System.Drawing.Point(436, 398);
+            this.buttonOkExcel.Location = new System.Drawing.Point(360, 398);
             this.buttonOkExcel.Name = "buttonOkExcel";
             this.buttonOkExcel.Size = new System.Drawing.Size(159, 26);
             this.buttonOkExcel.TabIndex = 5;
@@ -93,11 +93,10 @@
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.buttonOkExcel);
             this.Name = "Formtest2";
-            this.Text = "Formtest2";
+            this.Text = "Отчёты";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

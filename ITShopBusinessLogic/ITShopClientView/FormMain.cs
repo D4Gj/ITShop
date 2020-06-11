@@ -36,9 +36,9 @@ namespace ITShopClientView
 
         private void UpdateDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //var form = new FormUpdateData();
+           // var form = new FormUpdateData();
 
-            //form.ShowDialog();
+//            form.ShowDialog();
         }
 
         private void CreateOrderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,14 +57,31 @@ namespace ITShopClientView
         }
         private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // var form = new FormMessages();
-            // form.ShowDialog();
             var form = new FormReports();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadList();
             }
         }
-
+        private void ДанныеОЗаказеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView.SelectedRows.Count == 1)
+                {
+                    var form = new FormAboutOrder();
+                    int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    form.Id = id;
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
