@@ -33,9 +33,10 @@ namespace ITShopWindowsApp.Client
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
-                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[4].Visible = false;
                     dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    //dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -47,6 +48,29 @@ namespace ITShopWindowsApp.Client
         private void FormClient_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void ButtonDel_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int id =
+                   Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    try
+                    {
+                        logic.Delete(new ClientBindingModel { Id = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
     }
 }

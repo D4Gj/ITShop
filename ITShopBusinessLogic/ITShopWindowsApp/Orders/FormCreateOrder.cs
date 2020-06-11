@@ -14,15 +14,13 @@ namespace ITShopWindowsApp.Orders
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IProductLogic logicP;
         private readonly IClientLogic logicC;
         private readonly IOrderLogic logicO;
         private readonly MainLogic logicM;
-        private Dictionary<int, (string, int, decimal)> orderProduct;
-        public FormCreateOrder(IProductLogic logicP, MainLogic logicM, IClientLogic logicC, IOrderLogic logicO)
+        private readonly Dictionary<int, (string, int, decimal)> orderProduct;
+        public FormCreateOrder(MainLogic logicM, IClientLogic logicC, IOrderLogic logicO)
         {
             InitializeComponent();
-            this.logicP = logicP;
             this.logicM = logicM;
             this.logicC = logicC;
             this.logicO = logicO;
@@ -69,17 +67,17 @@ namespace ITShopWindowsApp.Orders
             }
         }
 
-        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
 
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        private void TextBoxCount_TextChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
 
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
+        private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             if (orderProduct != null && orderProduct.Count < 1)
             {
@@ -89,11 +87,6 @@ namespace ITShopWindowsApp.Orders
             if (comboBoxClient.SelectedValue == null)
             {
                 MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (logicO.howMuchIsMissingComponents(orderProduct).Count>0)
-            {
-                MessageBox.Show("Нехватает компонентов для продуктов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -116,13 +109,13 @@ namespace ITShopWindowsApp.Orders
             }
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormOrderProduct>();
             if (form.ShowDialog() == DialogResult.OK)
@@ -141,7 +134,7 @@ namespace ITShopWindowsApp.Orders
            
         }
 
-        private void buttonUpd_Click(object sender, EventArgs e)
+        private void ButtonUpd_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -157,7 +150,7 @@ namespace ITShopWindowsApp.Orders
                 }
             }
         }
-        private void buttonDel_Click(object sender, EventArgs e)
+        private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {

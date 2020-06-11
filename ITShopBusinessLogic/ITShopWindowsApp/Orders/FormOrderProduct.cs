@@ -28,7 +28,7 @@ namespace ITShopWindowsApp.Orders
             get { return Convert.ToDecimal(textBoxSum.Text); }
         }
 
-        private void calcSumm()
+        private void CalcSumm()
         {
             if (comboBoxProduct.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
             {
@@ -56,7 +56,7 @@ namespace ITShopWindowsApp.Orders
             set
             {
                 textBoxCount.Text = value.ToString();
-                calcSumm();
+                CalcSumm();
             }
         }
         public FormOrderProduct(IProductLogic logic)
@@ -95,14 +95,14 @@ namespace ITShopWindowsApp.Orders
             Close();
         }
 
-        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            calcSumm();
+            CalcSumm();
         }
 
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        private void TextBoxCount_TextChanged(object sender, EventArgs e)
         {
-            calcSumm();
+            CalcSumm();
         }
     }
 }

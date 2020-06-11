@@ -83,5 +83,17 @@ namespace ITShopBusinessLogic.BusinessLogic
                 });
             }
         }
+
+        public void SendMoveComponentReport(ReportBindingModel reportBindingModel, string mail)
+        {
+            reportBindingModel.FileName = "C:\\Windows\\Temp\\pdf.pdf";
+            reportLogic.SaveOperationsToPdfFile(reportBindingModel);
+            MailLogic.MailSendAsync(new MailSendInfo()
+            {
+                FileName = reportBindingModel.FileName,
+                MailAddress = mail,
+                Subject = "Отчет о движении товара"
+            });
+        }
     }
 }

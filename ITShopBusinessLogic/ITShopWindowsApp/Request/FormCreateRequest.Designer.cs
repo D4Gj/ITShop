@@ -56,7 +56,7 @@
             this.buttonCancel.TabIndex = 20;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonSave
             // 
@@ -66,7 +66,7 @@
             this.buttonSave.TabIndex = 19;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // textBoxName
             // 
@@ -106,7 +106,7 @@
             this.buttonRef.TabIndex = 4;
             this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
-            this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
+            this.buttonRef.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
             // buttonDel
             // 
@@ -116,7 +116,7 @@
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
+            this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
             // 
             // buttonUpd
             // 
@@ -126,7 +126,7 @@
             this.buttonUpd.TabIndex = 2;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
+            this.buttonUpd.Click += new System.EventHandler(this.ButtonUpd_Click);
             // 
             // buttonAdd
             // 
@@ -136,7 +136,7 @@
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // dataGridView
             // 
@@ -167,7 +167,7 @@
             this.radioButtonExel.TabStop = true;
             this.radioButtonExel.Text = "Exel";
             this.radioButtonExel.UseVisualStyleBackColor = true;
-            this.radioButtonExel.Click += new System.EventHandler(this.radioButtonExel_Click);
+            this.radioButtonExel.Click += new System.EventHandler(this.RadioButtonExel_Click);
             // 
             // radioButtonWord
             // 
@@ -179,12 +179,12 @@
             this.radioButtonWord.TabStop = true;
             this.radioButtonWord.Text = "Word";
             this.radioButtonWord.UseVisualStyleBackColor = true;
-            this.radioButtonWord.Click += new System.EventHandler(this.radioButtonWord_Click);
+            this.radioButtonWord.Click += new System.EventHandler(this.RadioButtonWord_Click);
             // 
-            // textBox1
+            // textBoxMail
             // 
             this.textBoxMail.Location = new System.Drawing.Point(75, 32);
-            this.textBoxMail.Name = "textBox1";
+            this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(273, 20);
             this.textBoxMail.TabIndex = 23;
             // 
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 429);
+            this.ClientSize = new System.Drawing.Size(490, 326);
             this.Controls.Add(this.textBoxMail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);

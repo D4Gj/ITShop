@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
@@ -85,7 +86,7 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormRequestComponent>();
             if (form.ShowDialog() == DialogResult.OK)
@@ -102,7 +103,7 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonUpd_Click(object sender, EventArgs e)
+        private void ButtonUpd_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -118,7 +119,7 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonDel_Click(object sender, EventArgs e)
+        private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -139,12 +140,12 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (radioButtonWord.Checked==false && radioButtonExel.Checked == false)
             {
@@ -163,6 +164,10 @@ namespace ITShopWindowsApp.Request
                 MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
+            }
+            if (!Regex.IsMatch(textBoxMail.Text, @"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$")) {
+                MessageBox.Show("Почта указана некоректно", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
             }
             try
             {
@@ -186,18 +191,18 @@ namespace ITShopWindowsApp.Request
             }
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void radioButtonWord_Click(object sender, EventArgs e)
+        private void RadioButtonWord_Click(object sender, EventArgs e)
         {
             radioButtonExel.Checked = false;
         }
 
-        private void radioButtonExel_Click(object sender, EventArgs e)
+        private void RadioButtonExel_Click(object sender, EventArgs e)
         {
             radioButtonWord.Checked = false;
         }

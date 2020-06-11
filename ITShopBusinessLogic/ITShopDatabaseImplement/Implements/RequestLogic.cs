@@ -13,11 +13,6 @@ namespace ITShopDatabaseImplement.Implements
 {
     public class RequestLogic : IRequestLogic
     {
-        private readonly ReportLogic reportLogic;
-        public RequestLogic(/*ReportLogic reportLogic*/)
-        {
-            //this.reportLogic = reportLogic;
-        }
         public void CreateOrUpdate(RequestBindingModel model)
         {
             using (var context = new ITShopDatabase())

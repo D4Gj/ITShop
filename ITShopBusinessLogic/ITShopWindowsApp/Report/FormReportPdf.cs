@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using Unity;
 using ITShopBusinessLogic.BindingModels;
+using System.Text.RegularExpressions;
 
 namespace ITShopWindowsApp.Report
 {
@@ -13,13 +14,15 @@ namespace ITShopWindowsApp.Report
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly ReportLogic logic;
-        public FormReportPdf(ReportLogic logic)
+        private readonly MainLogic mainLogic;
+        public FormReportPdf(ReportLogic logic, MainLogic mainLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.mainLogic = mainLogic;
         }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void ButtonCreate_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
             {
@@ -48,12 +51,10 @@ namespace ITShopWindowsApp.Report
             }
         }
 
-        private void buttonCreatePdfFile_Click(object sender, EventArgs e)
+        private void ButtonCreatePdfFile_Click(object sender, EventArgs e)
         {
-            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
+            if (CheckDate())
             {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
@@ -76,6 +77,37 @@ namespace ITShopWindowsApp.Report
                     }
                 }
             }
+        }
+
+        private void ButtonSendMail_Click(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(textBoxMail.Text, @"^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$"))
+            {
+                MessageBox.Show("Почта указана некоректно", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+                return;
+            }
+            if (CheckDate())
+            { 
+                mainLogic.SendMoveComponentReport(new ReportBindingModel
+                {
+                    DateFrom = dateTimePickerFrom.Value,
+                    DateTo = dateTimePickerTo.Value
+                }, textBoxMail.Text);
+                MessageBox.Show("Отчет отправлен",
+                   "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool CheckDate()
+        {
+            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания",
+               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
     }
 }

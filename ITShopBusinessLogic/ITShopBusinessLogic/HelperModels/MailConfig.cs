@@ -10,6 +10,5 @@ namespace ITShopBusinessLogic.HelperModels
         public int SmtpClientPort { get; set; }
         public string MailLogin { get; set; }
         public string MailPassword { get; set; }
-        public string MailForRequest { get; set; }
     }
 }

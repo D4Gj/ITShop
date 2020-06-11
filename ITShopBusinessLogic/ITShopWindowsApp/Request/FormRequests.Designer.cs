@@ -50,7 +50,7 @@
             this.buttonAdd.TabIndex = 10;
             this.buttonAdd.Text = "Новый запрос";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // buttonGetInfo
             // 
@@ -60,7 +60,7 @@
             this.buttonGetInfo.TabIndex = 15;
             this.buttonGetInfo.Text = "Подробне о запросе";
             this.buttonGetInfo.UseVisualStyleBackColor = true;
-            this.buttonGetInfo.Click += new System.EventHandler(this.buttonGetInfo_Click);
+            this.buttonGetInfo.Click += new System.EventHandler(this.ButtonGetInfo_Click);
             // 
             // FormRequests
             // 
