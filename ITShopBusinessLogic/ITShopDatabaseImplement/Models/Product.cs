@@ -11,6 +11,9 @@ namespace ITShopDatabaseImplement.Models
         [Required]
         public string ProductName { get; set; }
         [Required]
+        public DateTime ReleaseYear { get; set; }
+        public DateTime WarrantyEnd { get; set; }
+        [Required]
         public decimal ProductPrice { get; set; }
         public virtual List<ProductComponent> ProductComponents { get; set; }
         public virtual List<Order> Orders { get; set; }
