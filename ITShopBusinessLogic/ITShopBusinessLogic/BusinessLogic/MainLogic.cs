@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using ITShopBusinessLogic.BindingModels;
-using ITShopBusinessLogic.Enums;
 using ITShopBusinessLogic.HelperModels;
 using ITShopBusinessLogic.Interfaces;
 using ITShopBusinessLogic.ViewModels;
