@@ -54,14 +54,9 @@ namespace ITShopRestApi.Controllers
                 throw new Exception("В качестве логина должна быть указана почта");
             }
 
-            /*if(!Regex.IsMatch(model.Phone, @"^((8 |\+7)[\- ] ?)? (\(?\d{ 3}\)?[\- ]?)?[\d\- ]{7,10}$"))
-            { 
-                throw new Exception("Вы ввели не верный номер телефона!");
-            }*/
-
             if (model.Password.Length > _passwordMaxLength
                 && model.Password.Length < _passwordMinLength
-                && !Regex.IsMatch(model.Password, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
+                && Regex.IsMatch(model.Password, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
             {
                 throw new Exception($"Пароль должен быть длиной от {_passwordMinLength} до { _passwordMaxLength } и должен состоять из цифр, букв и небуквенных символов");
             }
