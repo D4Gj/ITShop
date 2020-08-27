@@ -12,6 +12,6 @@ namespace ITShopBusinessLogic.HelperModels
 
         public string Text { get; set; }
         public string FileName { get; set; }
-
+        public string Type { get; set; }
     }
 }

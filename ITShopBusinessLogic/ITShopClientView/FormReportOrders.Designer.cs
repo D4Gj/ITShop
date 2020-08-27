@@ -1,4 +1,5 @@
-﻿using AxAcroPDFLib;
+﻿using AcroPDFLib;
+using AxAcroPDFLib;
 
 namespace ITShopClientView
 {
@@ -34,16 +35,17 @@ namespace ITShopClientView
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportOrders));
             this.buttonSend = new System.Windows.Forms.Button();
             this.ReportDealMoneyViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pdfWindow = new AxAcroPDF();
+            this.pdfWindow = new AxAcroPDFLib.AxAcroPDF();
             ((System.ComponentModel.ISupportInitialize)(this.ReportDealMoneyViewModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(375, 30);
+            this.buttonSend.Location = new System.Drawing.Point(500, 46);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(126, 22);
+            this.buttonSend.Size = new System.Drawing.Size(168, 34);
             this.buttonSend.TabIndex = 0;
             this.buttonSend.Text = "Отправить";
             this.buttonSend.UseVisualStyleBackColor = true;
@@ -55,19 +57,21 @@ namespace ITShopClientView
             // 
             // pdfWindow
             // 
-            this.pdfWindow.Enabled = true;
             this.pdfWindow.Location = new System.Drawing.Point(12, 58);
+            this.pdfWindow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pdfWindow.Name = "pdfWindow";
+            this.pdfWindow.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfWindow.OcxState")));
             this.pdfWindow.Size = new System.Drawing.Size(878, 439);
             this.pdfWindow.TabIndex = 2;
             // 
             // FormReportOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 509);
+            this.ClientSize = new System.Drawing.Size(1203, 783);
             this.Controls.Add(this.pdfWindow);
             this.Controls.Add(this.buttonSend);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormReportOrders";
             this.Text = "Отправка всех заказов";
             this.Load += new System.EventHandler(this.Form_Load);

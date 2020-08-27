@@ -10,6 +10,7 @@ using Unity;
 using ITShopWindowsApp.Request;
 using ITShopBusinessLogic.BindingModels;
 using ITShopWindowsApp.Report;
+using ITShopBusinessLogic.HelperModels;
 
 namespace ITShopWindowsApp
 {
@@ -136,7 +137,55 @@ namespace ITShopWindowsApp
 
         private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            backUpLogic.SaveJson("C:\\Windows\\Temp\\123\\");
+            try
+            {
+                if (backUpLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if(fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        backUpLogic.SaveXml(fbd.SelectedPath);
+                        MailLogic.MailSendBackUp(new MailSendInfo
+                        {
+                            MailAddress="", //address suda
+                            Subject=$"XML Backup",
+                            Text = $"Backup",
+                            Type = "xml",
+                            FileName=fbd.SelectedPath
+                        });
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
+        private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (backUpLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        backUpLogic.SaveJson(fbd.SelectedPath);
+                        MailLogic.MailSendBackUp(new MailSendInfo
+                        {
+                            MailAddress = "", //address suda
+                            Subject = $"JSON Backup",
+                            Text = $"Backup",
+                            Type = "json",
+                            FileName = fbd.SelectedPath
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

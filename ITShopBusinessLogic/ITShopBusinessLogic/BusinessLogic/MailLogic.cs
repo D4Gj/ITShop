@@ -114,6 +114,57 @@ namespace ITShopBusinessLogic.BusinessLogic
                     client.Disconnect(true);
                 });
             }
-        }       
+        }
+        public static void MailSendBackUp(MailSendInfo info)
+        {
+            if (string.IsNullOrEmpty(smtpClientHost) || smtpClientPort == 0)
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(mailLogin) || string.IsNullOrEmpty(mailPassword))
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(info.MailAddress) ||
+           string.IsNullOrEmpty(info.Subject) || string.IsNullOrEmpty(info.Text))
+            {
+                return;
+            }
+            using (var objMailMessage = new MailMessage())
+            {
+                using (var objSmtpClient = new SmtpClient(smtpClientHost,
+               smtpClientPort))
+                {
+
+                    try
+                    {
+                        objMailMessage.From = new MailAddress(mailLogin);
+                        objMailMessage.To.Add(new MailAddress(info.MailAddress));
+                        objMailMessage.Subject = info.Subject;
+                        objMailMessage.Body = info.Text;
+                        objMailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
+                        objMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\client." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\component." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\order." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\orderProduct." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\product." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\productComponent." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\request." + info.Type));
+                        objMailMessage.Attachments.Add(new Attachment(info.FileName + "\\requestComponent." + info.Type));
+
+                        objSmtpClient.UseDefaultCredentials = false;
+                        objSmtpClient.EnableSsl = true;
+                        objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        objSmtpClient.Credentials = new NetworkCredential(mailLogin, mailPassword);
+                        objSmtpClient.Send(objMailMessage);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+        }
     }
 }
