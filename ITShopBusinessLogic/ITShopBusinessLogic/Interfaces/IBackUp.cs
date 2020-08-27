@@ -8,5 +8,7 @@ namespace ITShopBusinessLogic.Interfaces
     {
         void SaveJson(string folder);
         void SaveXml(string folder);
+        void SaveJsonClient(string folder,int clientId);
+        void SaveXmlClient(string folder,int clientId);
     }
 }

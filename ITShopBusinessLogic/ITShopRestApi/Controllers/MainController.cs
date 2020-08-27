@@ -46,9 +46,9 @@ namespace ITShopRestApi.Controllers
         [HttpPost]
         public void OrdersDone(ReportBindingModel model) => _report.PdfOrders(model);
         [HttpPost]
-        public void BackupSaveJson(string folder) => _backUp.SaveJson(folder);
+        public void BackupSaveJson(string folder,int clientId) => _backUp.SaveJsonClient(folder,clientId);
         [HttpPost]
-        public void BackupSaveXml(string folder) => _backUp.SaveXml(folder);
+        public void BackupSaveXml(string folder,int clientId) => _backUp.SaveXmlClient(folder,clientId);
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]
