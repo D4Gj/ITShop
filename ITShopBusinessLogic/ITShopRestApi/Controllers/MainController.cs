@@ -19,13 +19,15 @@ namespace ITShopRestApi.Controllers
         private readonly IProductLogic _product;
         private readonly MainLogic _main;
         private readonly ReportLogic _report;
+        private readonly IBackUp _backUp;
 
-        public MainController(IOrderLogic order, IProductLogic product, MainLogic main,ReportLogic report)
+        public MainController(IOrderLogic order, IProductLogic product, MainLogic main,ReportLogic report,IBackUp backUp)
         {
             _order = order;
             _product = product;
             _main = main;
             _report = report;
+            _backUp = backUp;
         }
         [HttpGet]
         public List<ProductViewModel> GetProductList() => _product.Read(null);
@@ -43,6 +45,10 @@ namespace ITShopRestApi.Controllers
         public void ExcelProducts(ReportBindingModel model) => _report.ExcelProducts(model);
         [HttpPost]
         public void OrdersDone(ReportBindingModel model) => _report.PdfOrders(model);
+        [HttpPost]
+        public void BackupSaveJson(string folder,int clientId) => _backUp.SaveJsonClient(folder,clientId);
+        [HttpPost]
+        public void BackupSaveXml(string folder,int clientId) => _backUp.SaveXmlClient(folder,clientId);
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]

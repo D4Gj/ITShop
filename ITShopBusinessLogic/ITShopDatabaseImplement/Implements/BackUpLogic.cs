@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 using System.Linq;
@@ -34,6 +35,19 @@ namespace ITShopDatabaseImplement.Implements
             SaveJsonProductComponent();
             SaveJsonRequest();
             SaveJsonRequestComponent();
+           
+        }
+        public void SaveJsonClient(string folder,int clientid)
+        {
+            this.folder = folder;
+            SaveJsonClient();
+            SaveJsonComponent();
+            SaveJsonOrder();
+            SaveJsonOrderProduct();
+            SaveJsonProduct();
+            SaveJsonProductComponent();
+            SaveJsonRequest();
+            SaveJsonRequestComponent();
         }
 
         public void SaveXml(string folder)
@@ -46,7 +60,17 @@ namespace ITShopDatabaseImplement.Implements
             SaveXmlProduct();
             SaveXmlProductComponent();
             SaveXmlRequest();
-            SaveXmlRequestComponent();
+            SaveXmlRequestComponent();            
+        }
+        public void SaveXmlClient(string folder,int clientId)
+        {
+            this.folder = folder;
+            SaveXmlClient(clientId);
+            SaveXmlComponent();
+            SaveXmlOrderClient(clientId);
+            SaveXmlOrderProduct();
+            SaveXmlProduct();
+            SaveXmlProductComponent();
         }
 
         private void SaveXmlRequestComponent()
@@ -119,10 +143,24 @@ namespace ITShopDatabaseImplement.Implements
             string fileNameDop = folder + order + xml;
             using (var context = new ITShopDatabase())
             {
+
                 XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Order>));
                 using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
                 {
                     fomatterXml.Serialize(fs, context.Orders);
+                }
+            }
+        }
+        private void SaveXmlOrderClient(int clientId)
+        {
+            string fileNameDop = folder + order + xml;
+            using (var context = new ITShopDatabase())
+            {
+
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Order>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.Orders.Where(x=>x.ClientId==clientId));
                 }
             }
         }
@@ -149,6 +187,18 @@ namespace ITShopDatabaseImplement.Implements
                 using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
                 {
                     fomatterXml.Serialize(fs, context.Clients);
+                }
+            }
+        }
+        private void SaveXmlClient(int clientId)
+        {
+            string fileNameDop = folder + client + xml;
+            using (var context = new ITShopDatabase())
+            {
+                XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Client>));
+                using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
+                {
+                    fomatterXml.Serialize(fs, context.Clients.Where(x=>x.Id==clientId));
                 }
             }
         }

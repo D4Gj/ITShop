@@ -1,4 +1,6 @@
-﻿namespace ITShopClientView
+﻿using System;
+
+namespace ITShopClientView
 {
     partial class FormMain
     {
@@ -37,6 +39,8 @@
             this.сообщенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.данныеОЗаказеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётПоЗаказамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xmlBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jsonBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +122,20 @@
             this.отчётПоЗаказамToolStripMenuItem.Text = "Отчёты по заказам";
             this.отчётПоЗаказамToolStripMenuItem.Click += new System.EventHandler(this.отчётПоЗаказамToolStripMenuItem_Click);
             // 
+            // xmlBackupToolStripMenuItem
+            // 
+            this.xmlBackupToolStripMenuItem.Name = "xmlBackupToolStripMenuItem";
+            this.xmlBackupToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.xmlBackupToolStripMenuItem.Text = "Бэкап xml";
+            this.xmlBackupToolStripMenuItem.Click += new System.EventHandler(this.xmlBackupToolStripMenuItem_Click);
+            // 
+            // jsonBackupToolStripMenuItem
+            // 
+            this.jsonBackupToolStripMenuItem.Name = "jsonBackupToolStripMenuItem";
+            this.jsonBackupToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.jsonBackupToolStripMenuItem.Text = "Бэкап json";
+            this.jsonBackupToolStripMenuItem.Click += new System.EventHandler(this.jsonBackupToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -135,9 +153,9 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
+        }        
 
-        #endregion       
+        #endregion
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
@@ -147,5 +165,7 @@
         private System.Windows.Forms.ToolStripMenuItem сообщенияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem данныеОЗаказеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчётПоЗаказамToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jsonBackupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xmlBackupToolStripMenuItem;
     }
 }

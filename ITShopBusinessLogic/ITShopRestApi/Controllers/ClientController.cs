@@ -42,9 +42,7 @@ namespace ITShopRestApi.Controllers
         {
             CheckData(model);
             _logic.CreateOrUpdate(model);
-        }
-        [HttpPost]
-        public void SendBackUp(ClientBindingModel model) => _messageInfoLogic.        
+        }      
         [HttpPost]
         public void UpdateData(ClientBindingModel model)
         {

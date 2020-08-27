@@ -1,4 +1,5 @@
-﻿using ITShopBusinessLogic.ViewModels;
+﻿using ITShopBusinessLogic.BindingModels;
+using ITShopBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,6 +90,25 @@ namespace ITShopClientView
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void xmlBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            APIClient.PostRequest($"api/main/saveXml", new ReportBindingModel
+            {
+                FileName = "",
+                ClientId = Program.Client.Id,
+            });
+            APIClient.PostRequest($"api/main/sendmessage", new ReportBindingModel
+            {
+                FileName = "",
+                Login = Program.Client.Login
+            });
+            MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void jsonBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
