@@ -16,14 +16,16 @@ namespace ITShopRestApi.Controllers
     {
         private readonly IClientLogic _logic;
         private readonly IMessageInfoLogic _messageInfoLogic;
+        private readonly IBackUp _backUp;
 
         private readonly int _passwordMaxLength = 50;
         private readonly int _passwordMinLength = 10;
 
-        public ClientController(IClientLogic logic,IMessageInfoLogic messageInfoLogic)
+        public ClientController(IClientLogic logic,IMessageInfoLogic messageInfoLogic,IBackUp backUp)
         {
             _logic = logic;
             _messageInfoLogic = messageInfoLogic;
+            _backUp = backUp;
         }
 
         [HttpGet]
@@ -41,6 +43,8 @@ namespace ITShopRestApi.Controllers
             CheckData(model);
             _logic.CreateOrUpdate(model);
         }
+        [HttpPost]
+        public void SendBackUp(ClientBindingModel model) => _messageInfoLogic.        
         [HttpPost]
         public void UpdateData(ClientBindingModel model)
         {
