@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace ITShopDatabaseImplement.Implements
 {
@@ -14,14 +15,14 @@ namespace ITShopDatabaseImplement.Implements
         private string folder;
         private readonly string json = ".json";
         private readonly string xml = ".xml";
-        private readonly string client = "client";
-        private readonly string component = "component";
-        private readonly string order = "order";
-        private readonly string orderProduct = "orderProduct";
-        private readonly string product = "product";
-        private readonly string productComponent = "productComponent";
-        private readonly string request = "request";
-        private readonly string requestComponent = "requestComponent";
+        private readonly string client = "//client";
+        private readonly string component = "//component";
+        private readonly string order = "//order";
+        private readonly string orderProduct = "//orderProduct";
+        private readonly string product = "//product";
+        private readonly string productComponent = "//productComponent";
+        private readonly string request = "//request";
+        private readonly string requestComponent = "//requestComponent";
         public void SaveJson(string folder)
         {
             this.folder = folder;
@@ -33,7 +34,6 @@ namespace ITShopDatabaseImplement.Implements
             SaveJsonProductComponent();
             SaveJsonRequest();
             SaveJsonRequestComponent();
-            throw new System.NotImplementedException();
         }
 
         public void SaveXml(string folder)
@@ -47,7 +47,6 @@ namespace ITShopDatabaseImplement.Implements
             SaveXmlProductComponent();
             SaveXmlRequest();
             SaveXmlRequestComponent();
-            throw new System.NotImplementedException();
         }
 
         private void SaveXmlRequestComponent()
@@ -201,6 +200,11 @@ namespace ITShopDatabaseImplement.Implements
                 DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<Product>));
                 using (FileStream fs = new FileStream(fileName, FileMode.Create))
                 {
+                    foreach (var temp in context.Products)
+                    {
+                        temp.ReleaseYear = new DateTime(1, 1, 2);
+                        temp.WarrantyEnd = new DateTime(1, 1, 2);
+                    }
                     jsonSerializer.WriteObject(fs, context.Products);
                 }
             };
@@ -211,6 +215,7 @@ namespace ITShopDatabaseImplement.Implements
             string fileName = folder + orderProduct + json;
             using (var context = new ITShopDatabase())
             {
+                
                 DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<OrderProduct>));
                 using (FileStream fs = new FileStream(fileName, FileMode.Create))
                 {
@@ -227,7 +232,7 @@ namespace ITShopDatabaseImplement.Implements
                 DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<Order>));
                 using (FileStream fs = new FileStream(fileName, FileMode.Create))
                 {
-                    jsonSerializer.WriteObject(fs, context.Orders);
+                    jsonSerializer.WriteObject(fs, context.Orders.Where(x=> x.TookDate != null));
                 }
             };
         }

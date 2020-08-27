@@ -147,7 +147,7 @@ namespace ITShopWindowsApp
                         backUpLogic.SaveXml(fbd.SelectedPath);
                         MailLogic.MailSendBackUp(new MailSendInfo
                         {
-                            MailAddress="", //address suda
+                            MailAddress="dima.1998.gig@mail.ru", //address suda
                             Subject=$"XML Backup",
                             Text = $"Backup",
                             Type = "xml",
@@ -173,7 +173,7 @@ namespace ITShopWindowsApp
                         backUpLogic.SaveJson(fbd.SelectedPath);
                         MailLogic.MailSendBackUp(new MailSendInfo
                         {
-                            MailAddress = "", //address suda
+                            MailAddress = "dima.1998.gig@mail.ru", //address suda
                             Subject = $"JSON Backup",
                             Text = $"Backup",
                             Type = "json",
