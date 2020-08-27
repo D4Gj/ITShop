@@ -93,22 +93,24 @@ namespace ITShopClientView
         }
         private void xmlBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            APIClient.PostRequest($"api/main/saveXml", new ReportBindingModel
+            APIClient.PostRequest($"api/main/saveXml", new BackupBindingModel
             {
-                FileName = "",
-                ClientId = Program.Client.Id,
+                folder = "C:\\Windows\\Temp\\123",
+                Id = Program.Client.Id,
             });
-            APIClient.PostRequest($"api/main/sendmessage", new ReportBindingModel
-            {
-                FileName = "",
-                Login = Program.Client.Login
-            });
+            
             MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void jsonBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            APIClient.PostRequest($"api/main/saveJson", new BackupBindingModel
+            {
+                folder = "C:\\Windows\\Temp\\123",
+                Id = Program.Client.Id,
+            });
+
+            MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

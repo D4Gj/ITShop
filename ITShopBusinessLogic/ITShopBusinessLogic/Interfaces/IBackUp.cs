@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ITShopBusinessLogic.BindingModels;
 
 namespace ITShopBusinessLogic.Interfaces
 {
@@ -8,7 +9,7 @@ namespace ITShopBusinessLogic.Interfaces
     {
         void SaveJson(string folder);
         void SaveXml(string folder);
-        void SaveJsonClient(string folder,int clientId);
-        void SaveXmlClient(string folder,int clientId);
+        void SaveJsonClient(BackupBindingModel model);
+        void SaveXmlClient(BackupBindingModel model);
     }
 }

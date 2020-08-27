@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 using System.Linq;
+using ITShopBusinessLogic.BindingModels;
 
 namespace ITShopDatabaseImplement.Implements
 {
@@ -62,12 +63,12 @@ namespace ITShopDatabaseImplement.Implements
             SaveXmlRequest();
             SaveXmlRequestComponent();            
         }
-        public void SaveXmlClient(string folder,int clientId)
+        public void SaveXmlClient(BackupBindingModel model)
         {
-            this.folder = folder;
-            SaveXmlClient(clientId);
+            this.folder = model.folder;
+            SaveXmlClient(model.Id.Value);
             SaveXmlComponent();
-            SaveXmlOrderClient(clientId);
+            SaveXmlOrderClient(model.Id.Value);
             SaveXmlOrderProduct();
             SaveXmlProduct();
             SaveXmlProductComponent();
@@ -160,7 +161,7 @@ namespace ITShopDatabaseImplement.Implements
                 XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Order>));
                 using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
                 {
-                    fomatterXml.Serialize(fs, context.Orders.Where(x=>x.ClientId==clientId));
+                    fomatterXml.Serialize(fs, context.Orders);
                 }
             }
         }
@@ -198,7 +199,7 @@ namespace ITShopDatabaseImplement.Implements
                 XmlSerializer fomatterXml = new XmlSerializer(typeof(DbSet<Client>));
                 using (FileStream fs = new FileStream(fileNameDop, FileMode.Create))
                 {
-                    fomatterXml.Serialize(fs, context.Clients.Where(x=>x.Id==clientId));
+                    fomatterXml.Serialize(fs, context.Clients);
                 }
             }
         }

@@ -75,7 +75,9 @@ namespace ITShopClientView
             this.изменитьДанныеToolStripMenuItem,
             this.сообщенияToolStripMenuItem,
             this.данныеОЗаказеToolStripMenuItem,
-            this.отчётПоЗаказамToolStripMenuItem});
+            this.отчётПоЗаказамToolStripMenuItem,
+            this.xmlBackupToolStripMenuItem,
+            this.jsonBackupToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.менюToolStripMenuItem.Text = "Меню";

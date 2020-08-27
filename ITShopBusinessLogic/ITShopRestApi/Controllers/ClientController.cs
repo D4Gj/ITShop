@@ -16,16 +16,14 @@ namespace ITShopRestApi.Controllers
     {
         private readonly IClientLogic _logic;
         private readonly IMessageInfoLogic _messageInfoLogic;
-        private readonly IBackUp _backUp;
 
         private readonly int _passwordMaxLength = 50;
         private readonly int _passwordMinLength = 10;
 
-        public ClientController(IClientLogic logic,IMessageInfoLogic messageInfoLogic,IBackUp backUp)
+        public ClientController(IClientLogic logic,IMessageInfoLogic messageInfoLogic)
         {
             _logic = logic;
             _messageInfoLogic = messageInfoLogic;
-            _backUp = backUp;
         }
 
         [HttpGet]
