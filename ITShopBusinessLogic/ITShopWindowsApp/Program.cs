@@ -49,6 +49,8 @@ namespace ITShopWindowsApp
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMessageInfoLogic, MessageInfoLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IBackUp, BackUpLogic>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }

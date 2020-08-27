@@ -19,11 +19,13 @@ namespace ITShopWindowsApp
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic)
+        private readonly IBackUp backUpLogic;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic,IBackUp backUpLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
+            this.backUpLogic = backUpLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -130,6 +132,11 @@ namespace ITShopWindowsApp
         {
             var form = Container.Resolve<FormReportPdf>();
             form.ShowDialog();
+        }
+
+        private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            backUpLogic.SaveJson("C:\\Windows\\Temp\\123\\");
         }
     }
 }
