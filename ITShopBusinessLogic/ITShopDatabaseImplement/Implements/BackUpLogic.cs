@@ -38,17 +38,15 @@ namespace ITShopDatabaseImplement.Implements
             SaveJsonRequestComponent();
            
         }
-        public void SaveJsonClient(string folder,int clientid)
+        public void SaveJsonClient(BackupBindingModel model)
         {
-            this.folder = folder;
+            this.folder = model.folder;
             SaveJsonClient();
             SaveJsonComponent();
             SaveJsonOrder();
             SaveJsonOrderProduct();
             SaveJsonProduct();
             SaveJsonProductComponent();
-            SaveJsonRequest();
-            SaveJsonRequestComponent();
         }
 
         public void SaveXml(string folder)
@@ -66,9 +64,9 @@ namespace ITShopDatabaseImplement.Implements
         public void SaveXmlClient(BackupBindingModel model)
         {
             this.folder = model.folder;
-            SaveXmlClient(model.Id.Value);
+            SaveXmlClient();
             SaveXmlComponent();
-            SaveXmlOrderClient(model.Id.Value);
+            SaveXmlOrderClient();
             SaveXmlOrderProduct();
             SaveXmlProduct();
             SaveXmlProductComponent();
@@ -152,7 +150,7 @@ namespace ITShopDatabaseImplement.Implements
                 }
             }
         }
-        private void SaveXmlOrderClient(int clientId)
+        private void SaveXmlOrderClient()
         {
             string fileNameDop = folder + order + xml;
             using (var context = new ITShopDatabase())
